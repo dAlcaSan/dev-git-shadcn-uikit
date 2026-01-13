@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Input } from '@shadcn-uikit/ui'
-import { themes } from './themes'
+import { themes, type Theme } from './themes'
 import './index.css'
 
 function App() {
-  const [currentTheme, setCurrentTheme] = useState(themes[0])
+  const [currentTheme, setCurrentTheme] = useState<Theme>(themes[0])
   const [formData, setFormData] = useState({ name: '', email: '' })
 
-  const handleThemeChange = (theme: typeof themes[number]) => {
+  const handleThemeChange = (theme: Theme) => {
     setCurrentTheme(theme)
     document.documentElement.className = theme.className
   }
