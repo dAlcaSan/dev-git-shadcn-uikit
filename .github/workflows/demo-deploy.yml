@@ -53,9 +53,7 @@ jobs:
         run: pnpm --filter ./packages/ui run build
 
       - name: Build demo
-        run: pnpm --filter ./packages/demo run build
-        env:
-          VITE_BASE_PATH: /shadcn-uikit/
+        run: VITE_BASE_PATH=/shadcn-uikit/ pnpm --filter ./packages/demo run build
 
 #      - name: Build storybook
 #        run: pnpm --filter ./packages/ui run storybook:build -o ../documentation/.vitepress/dist/storybook
