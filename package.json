@@ -2,14 +2,20 @@
   "name": "shadcn-uikit-monorepo",
   "version": "0.1.0",
   "private": true,
-  "description": "Custom shadcn UI components library with color schemes and demos",
+  "description": "The Acronis UI Shadcn UI components library with color schemes and demos",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "dev": "npm run dev --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
+    "husky": "pnpm run lint-staged && pnpm run lint:ts",
+    "lint-staged": "lint-staged",
+    "lint": "pnpm run -r lint",
+    "lint:fix": "pnpm run -r lint:fix",
+    "lint:ts": "pnpm run -r lint:ts",
+    "prepare": "husky",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test -- --watch=false",
+    "release": "pnpm run release --workspaces",
     "type-check": "npm run type-check --workspaces --if-present"
   },
   "keywords": [
@@ -21,10 +27,18 @@
   ],
   "author": "Acronis International GmbH",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acronis/shadcn-uikit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acronis/shadcn-uikit/issues"
+  },
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "typescript": "^5.3.3"
-  }
+  },
+  "packageManager": "pnpm@10.27.0"
 }
