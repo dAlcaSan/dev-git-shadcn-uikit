@@ -1,3 +1,10 @@
+## [0.4.0](https://github.com/acronis/shadcn-uikit/compare/v0.3.0...v0.4.0) (2026-01-13)
+
+
+### Features
+
+* refine build process and update package.json for improved dependency management ([4252719](https://github.com/acronis/shadcn-uikit/commit/4252719941c9047ae22cd4bbaad7fb228e767366))
+
 ## [0.3.0](https://github.com/acronis/shadcn-uikit/compare/v0.2.0...v0.3.0) (2026-01-13)
 
 
