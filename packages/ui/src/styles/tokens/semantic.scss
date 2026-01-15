@@ -19,121 +19,145 @@
        ============================================ */
 
     /* Base background for the application */
-    --semantic-bg-base: var(--color-surface-primary);
+    --av-background: var(--color-surface-primary);
 
     /* Elevated surfaces (cards, dialogs, popovers) */
-    --semantic-bg-elevated: var(--color-surface-elevated);
+    --av-elevated: var(--color-surface-elevated);
+    --av-card: var(--av-elevated);
 
     /* Muted/subtle backgrounds */
-    --semantic-bg-muted: var(--color-brand-lightest);
+    --av-muted: var(--color-brand-lightest);
 
     /* Brand-colored backgrounds */
-    --semantic-bg-brand: var(--color-brand-primary);
+    --av-primary: var(--color-brand-primary);
+    --av-accent: var(--color-brand-primary);
+    --av-secondary: var(--color-surface-elevated);
+
+    /* Action colors */
+    --av-destructive: var(--color-status-danger);
+    --av-destructive-foreground: var(--color-text-inverse);
+
+    /* Status colors */
+    --av-danger: var(--color-status-danger);
+    --av-success: var(--color-status-success);
+    --av-warning: var(--color-status-warning);
+    --av-info: var(--color-status-info);
+    --av-critical: var(--color-status-critical);
+    --av-neutral: var(--color-status-neutral);
 
     /* Overlay backgrounds (tooltips, modals) */
-    --semantic-bg-overlay: var(--color-surface-overlay);
+    --av-popover: var(--av-elevated);
+    --av-tooltip: var(--color-surface-overlay);
 
     /* ============================================
        TEXT / FOREGROUND
        ============================================ */
 
     /* Primary text color */
-    --semantic-text-primary: var(--color-text-primary);
+    --av-foreground: var(--color-text-primary);
+    --av-text-primary: var(--color-text-primary); // TODO: replace with foreground
+    --av-card-foreground: var(--color-text-primary);
+    --av-popover-foreground: var(--color-text-primary);
+    --av-primary-foreground: var(--color-text-inverse);
 
     /* Secondary/muted text */
-    --semantic-text-secondary: var(--color-text-secondary);
+    --av-muted-foreground: var(--color-text-secondary);
+    --av-secondary-foreground: var(--color-text-secondary);
 
     /* Tertiary/disabled text */
-    --semantic-text-tertiary: var(--color-text-tertiary);
+    --av-tertiary-foreground: var(--color-text-tertiary);
 
     /* Inverse text (on dark backgrounds) */
-    --semantic-text-inverse: var(--color-surface-primary);
+    --av-accent-foreground: var(--color-text-inverse);
+    --av-text-inverse: var(--color-surface-primary);
 
     /* Brand-colored text (links, etc) */
-    --semantic-text-brand: var(--color-brand-primary);
+    --av-brand-foreground: var(--color-brand-primary);
 
     /* ============================================
        BORDERS
        ============================================ */
 
     /* Default border color (light blue for inputs) */
-    --semantic-border-default: 213 65% 85%; /* Light blue similar to rgba(38,104,197,0.3) */
+    --av-border: 213 65% 85%; /* Light blue similar to rgba(38,104,197,0.3) */
+    --av-input: 213 65% 85%; /* Light blue similar to rgba(38,104,197,0.3) */
 
     /* Strong/prominent borders */
-    --semantic-border-strong: var(--color-brand-primary);
+    --av-border-strong: var(--color-brand-primary);
 
     /* Subtle borders (very light) */
-    --semantic-border-subtle: 213 65% 92%;
+    --av-border-subtle: 213 65% 92%;
 
     /* ============================================
        INTERACTIVE ELEMENTS
        ============================================ */
 
     /* Default interactive state */
-    --semantic-interactive-default: var(--color-brand-primary);
+    --av-interactive-default: var(--color-brand-primary);
 
     /* Hover state */
-    --semantic-interactive-hover: var(--color-brand-light);
+    --av-interactive-hover: var(--color-brand-light);
 
     /* Active/pressed state */
-    --semantic-interactive-active: var(--color-brand-primary);
+    --av-interactive-active: var(--color-brand-primary);
 
     /* Disabled state */
-    --semantic-interactive-disabled: var(--color-text-tertiary);
+    --av-interactive-disabled: var(--color-text-tertiary);
 
     /* Focus ring */
-    --semantic-interactive-focus: var(--color-brand-primary);
+    --av-ring: var(--color-brand-primary);
+    --av-focus: var(--color-brand-primary);
 
     /* ============================================
        STATUS COLORS
        ============================================ */
 
     /* Success */
-    --semantic-status-success: var(--color-status-success);
-    --semantic-status-success-bg: var(--color-status-success-light);
-    --semantic-status-success-text: var(--color-status-success-dark);
+    --av-status-success: var(--color-status-success);
+    --av-status-success-bg: var(--color-status-success-light);
+    --av-status-success-text: var(--color-status-success-dark);
 
     /* Info */
-    --semantic-status-info: var(--color-status-info);
-    --semantic-status-info-bg: var(--color-status-info-light);
-    --semantic-status-info-text: var(--color-status-info-dark);
+    --av-status-info: var(--color-status-info);
+    --av-status-info-bg: var(--color-status-info-light);
+    --av-status-info-text: var(--color-status-info-dark);
 
     /* Warning */
-    --semantic-status-warning: var(--color-status-warning);
-    --semantic-status-warning-bg: var(--color-status-warning-light);
-    --semantic-status-warning-text: var(--color-status-warning-dark);
+    --av-status-warning: var(--color-status-warning);
+    --av-status-warning-bg: var(--color-status-warning-light);
+    --av-status-warning-text: var(--color-status-warning-dark);
 
-    /* Danger/Destructive */
-    --semantic-status-danger: var(--color-status-danger);
-    --semantic-status-danger-bg: var(--color-status-danger-light);
-    --semantic-status-danger-text: var(--color-status-danger-dark);
+    /* Danger */
+    --av-status-danger: var(--color-status-danger);
+    --av-status-danger-bg: var(--color-status-danger-light);
+    --av-status-danger-text: var(--color-status-danger-dark);
 
     /* Critical */
-    --semantic-status-critical: var(--color-status-critical);
-    --semantic-status-critical-bg: var(--color-status-critical-light);
-    --semantic-status-critical-text: var(--color-status-critical-dark);
+    --av-status-critical: var(--color-status-critical);
+    --av-status-critical-bg: var(--color-status-critical-light);
+    --av-status-critical-text: var(--color-status-critical-dark);
 
     /* Neutral */
-    --semantic-status-neutral: var(--color-neutral);
-    --semantic-status-neutral-bg: var(--color-neutral-light);
-    --semantic-status-neutral-text: var(--color-neutral-dark);
+    --av-status-neutral: var(--color-neutral);
+    --av-status-neutral-bg: var(--color-neutral-light);
+    --av-status-neutral-text: var(--color-neutral-dark);
 
     /* AI */
-    --semantic-status-ai: var(--color-ai);
-    --semantic-status-ai-bg: var(--color-ai-light);
-    --semantic-status-ai-text: var(--color-ai-dark);
+    --av-status-ai: var(--color-ai);
+    --av-status-ai-bg: var(--color-ai-light);
+    --av-status-ai-text: var(--color-ai-dark);
 
     /* ============================================
        COMPONENT-SPECIFIC (Minimal Set)
        ============================================ */
 
     /* Sidebar/Navigation */
-    --semantic-nav-bg: var(--color-surface-secondary);
-    --semantic-nav-text: var(--color-surface-primary);
-    --semantic-nav-active: var(--color-brand-secondary);
+    --av-nav-bg: var(--color-surface-secondary);
+    --av-nav-text: var(--color-surface-primary);
+    --av-nav-active: var(--color-brand-secondary);
 
     /* Radius */
-    --semantic-radius: 0.25rem; /* 4px from Figma */
+    --av-radius: 0.25rem; /* 4px from Figma */
 
     --av-chart-1: oklch(64.6% 0.222 41.116deg);
     --av-chart-2: oklch(60% 0.118 184.704deg);
@@ -165,46 +189,46 @@
 
   .dark {
     /* Backgrounds */
-    --semantic-bg-base: var(--color-text-primary);
-    --semantic-bg-elevated: 215 26% 23%;
-    --semantic-bg-muted: 215 26% 30%;
-    --semantic-bg-brand: var(--color-brand-primary);
-    --semantic-bg-overlay: 215 26% 25%;
+    --av-background: var(--color-text-primary);
+    --av-elevated: 215 26% 23%;
+    --av-muted: 215 26% 30%;
+    --av-tooltip: 215 26% 25%;
 
     /* Text */
-    --semantic-text-primary: var(--color-surface-primary);
-    --semantic-text-secondary: 0 0% 70%;
-    --semantic-text-tertiary: 0 0% 60%;
-    --semantic-text-inverse: var(--color-text-primary);
-    --semantic-text-brand: var(--color-brand-primary);
+    --av-foreground: var(--color-surface-primary);
+    --av-text-primary: var(--color-surface-primary); // TODO: replace with foreground
+    --av-secondary-foreground: 0 0% 70%;
+    --av-tertiary-foreground: 0 0% 60%;
+    --av-text-inverse: var(--color-text-primary);
+    --av-brand-foreground: var(--color-brand-primary);
 
     /* Borders */
-    --semantic-border-default: 215 26% 35%;
-    --semantic-border-strong: 215 26% 40%;
-    --semantic-border-subtle: 215 26% 25%;
+    --av-border: 215 26% 35%;
+    --av-border-strong: 215 26% 40%;
+    --av-border-subtle: 215 26% 25%;
 
     /* Interactive */
-    --semantic-interactive-default: var(--color-brand-primary);
-    --semantic-interactive-hover: 213 65% 56%;
-    --semantic-interactive-active: var(--color-brand-primary);
-    --semantic-interactive-disabled: 215 26% 40%;
-    --semantic-interactive-focus: var(--color-brand-primary);
+    --av-interactive-default: var(--color-brand-primary);
+    --av-interactive-hover: 213 65% 56%;
+    --av-interactive-active: var(--color-brand-primary);
+    --av-interactive-disabled: 215 26% 40%;
+    --av-focus: var(--color-brand-primary);
 
     /* Status colors remain mostly the same in dark mode */
 
     /* Backgrounds are adjusted for better contrast */
-    --semantic-status-success-bg: 73 68% 20%;
-    --semantic-status-success-text: var(--color-status-success-light);
-    --semantic-status-info-bg: 211 82% 20%;
-    --semantic-status-info-text: var(--color-status-info-light);
-    --semantic-status-warning-bg: 45 100% 20%;
-    --semantic-status-warning-text: var(--color-status-warning-light);
-    --semantic-status-danger-bg: 0 77% 20%;
-    --semantic-status-danger-text: var(--color-status-danger-light);
-    --semantic-status-critical-bg: 25 100% 20%;
-    --semantic-status-critical-text: var(--color-status-critical-light);
-    --semantic-status-neutral-bg: 220 11% 25%;
-    --semantic-status-neutral-text: var(--color-neutral-light);
+    --av-status-success-bg: 73 68% 20%;
+    --av-status-success-text: var(--color-status-success-light);
+    --av-status-info-bg: 211 82% 20%;
+    --av-status-info-text: var(--color-status-info-light);
+    --av-status-warning-bg: 45 100% 20%;
+    --av-status-warning-text: var(--color-status-warning-light);
+    --av-status-danger-bg: 0 77% 20%;
+    --av-status-danger-text: var(--color-status-danger-light);
+    --av-status-critical-bg: 25 100% 20%;
+    --av-status-critical-text: var(--color-status-critical-light);
+    --av-status-neutral-bg: 220 11% 25%;
+    --av-status-neutral-text: var(--color-neutral-light);
 
     --av-chart-1: oklch(48.8% 0.243 264.376deg);
     --av-chart-2: oklch(69.6% 0.17 162.48deg);

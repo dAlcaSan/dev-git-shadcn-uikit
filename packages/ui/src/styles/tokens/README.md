@@ -53,41 +53,41 @@ These tokens define **intent and usage**, not specific colors. This is the **key
 
 #### Backgrounds
 
-- `--semantic-bg-base`: Main application background
-- `--semantic-bg-elevated`: Cards, dialogs, popovers
-- `--semantic-bg-muted`: Subtle/muted backgrounds
-- `--semantic-bg-brand`: Brand-colored backgrounds
-- `--semantic-bg-overlay`: Tooltips, modals
+- `--av-bg-base`: Main application background
+- `--av-bg-elevated`: Cards, dialogs, popovers
+- `--av-bg-muted`: Subtle/muted backgrounds
+- `--av-bg-brand`: Brand-colored backgrounds
+- `--av-bg-overlay`: Tooltips, modals
 
 #### Text/Foreground
 
-- `--semantic-text-primary`: Primary text
-- `--semantic-text-secondary`: Secondary/muted text
-- `--semantic-text-tertiary`: Disabled text
-- `--semantic-text-inverse`: Text on dark backgrounds
-- `--semantic-text-brand`: Brand-colored text (links)
+- `--av-text-primary`: Primary text
+- `--av-text-secondary`: Secondary/muted text
+- `--av-text-tertiary`: Disabled text
+- `--av-text-inverse`: Text on dark backgrounds
+- `--av-text-brand`: Brand-colored text (links)
 
 #### Borders
 
-- `--semantic-border-default`: Standard borders
-- `--semantic-border-strong`: Prominent borders
-- `--semantic-border-subtle`: Subtle borders
+- `--av-border-default`: Standard borders
+- `--av-border-strong`: Prominent borders
+- `--av-border-subtle`: Subtle borders
 
 #### Interactive Elements
 
-- `--semantic-interactive-default`: Default state
-- `--semantic-interactive-hover`: Hover state
-- `--semantic-interactive-active`: Active/pressed state
-- `--semantic-interactive-disabled`: Disabled state
-- `--semantic-interactive-focus`: Focus ring
+- `--av-interactive-default`: Default state
+- `--av-interactive-hover`: Hover state
+- `--av-interactive-active`: Active/pressed state
+- `--av-interactive-disabled`: Disabled state
+- `--av-interactive-focus`: Focus ring
 
 #### Status
 
-- `--semantic-status-success` / `-bg` / `-text`
-- `--semantic-status-info` / `-bg` / `-text`
-- `--semantic-status-warning` / `-bg` / `-text`
-- `--semantic-status-danger` / `-bg` / `-text`
-- `--semantic-status-critical` / `-bg` / `-text`
+- `--av-status-success` / `-bg` / `-text`
+- `--av-status-info` / `-bg` / `-text`
+- `--av-status-warning` / `-bg` / `-text`
+- `--av-status-danger` / `-bg` / `-text`
+- `--av-status-critical` / `-bg` / `-text`
 
 ### Dark Mode Support
 
@@ -95,8 +95,8 @@ Dark mode is handled by overriding semantic tokens in the `.dark` class:
 
 ```scss
 .dark {
-  --semantic-bg-base: var(--color-text-primary);
-  --semantic-text-primary: var(--color-surface-primary);
+  --av-bg-base: var(--color-text-primary);
+  --av-text-primary: var(--color-surface-primary);
   /* ... other overrides */
 }
 ```
@@ -113,10 +113,10 @@ Components use Tailwind classes like `bg-background`, `text-foreground`, `border
 
 ```js
 colors: {
-  background: 'hsl(var(--semantic-bg-base))',
-  foreground: 'hsl(var(--semantic-text-primary))',
-  primary: 'hsl(var(--semantic-interactive-default))',
-  border: 'hsl(var(--semantic-border-default))',
+  background: 'hsl(var(--av-bg-base))',
+  foreground: 'hsl(var(--av-text-primary))',
+  primary: 'hsl(var(--av-interactive-default))',
+  border: 'hsl(var(--av-border-default))',
   // ... etc
 }
 ```
@@ -174,10 +174,8 @@ Change how colors are used semantically:
 
 ```scss
 :root {
-  --semantic-interactive-default: var(
-    --color-status-success
-  ); /* Green buttons */
-  --semantic-bg-muted: var(--color-neutral-light); /* Different muted bg */
+  --av-interactive-default: var(--color-status-success); /* Green buttons */
+  --av-bg-muted: var(--color-neutral-light); /* Different muted bg */
 }
 ```
 
@@ -214,8 +212,8 @@ Add new theme classes:
 
 ```scss
 :root {
-  --semantic-bg-elevated: var(--color-surface-primary);
-  --semantic-border-default: var(--color-brand-primary);
+  --av-bg-elevated: var(--color-surface-primary);
+  --av-border-default: var(--color-brand-primary);
   /* ... ~30 semantic tokens */
 }
 ```

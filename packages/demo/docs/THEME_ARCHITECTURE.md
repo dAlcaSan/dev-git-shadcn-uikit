@@ -23,7 +23,7 @@ All theme color mappings are now defined in **one place**:
 // packages/demo-app/src/lib/playground/themeConfig.ts
 export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
   {
-    cssVar: '--semantic-bg-base',
+    cssVar: '--av-background',
     tailwindKey: 'background',
     paletteKey: 'background',
   },
@@ -110,7 +110,7 @@ Edit **only** `themeConfig.ts`:
 export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
   // ... existing mappings
   {
-    cssVar: '--semantic-status-success-bg',
+    cssVar: '--av-status-success-bg',
     tailwindKey: 'success',
     paletteKey: 'success',
   },

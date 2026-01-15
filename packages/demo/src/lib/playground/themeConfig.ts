@@ -18,60 +18,96 @@ export interface ThemeColorMapping {
  */
 export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
   // Base colors
-  { cssVar: '--semantic-bg-base', tailwindKey: 'background', paletteKey: 'background' },
-  { cssVar: '--semantic-text-primary', tailwindKey: 'foreground', paletteKey: 'foreground' },
+  {
+    cssVar: '--av-background',
+    tailwindKey: 'background',
+    paletteKey: 'background',
+  },
+  {
+    cssVar: '--av-foreground',
+    tailwindKey: 'foreground',
+    paletteKey: 'foreground',
+  },
 
   // Card
-  { cssVar: '--semantic-bg-elevated', tailwindKey: 'card', paletteKey: 'card' },
   {
-    cssVar: '--semantic-text-primary',
+    cssVar: '--av-card',
+    tailwindKey: 'card',
+    paletteKey: 'card',
+  },
+  {
+    cssVar: '--av-card-foreground',
     tailwindKey: 'card.foreground',
     paletteKey: 'cardForeground',
   },
 
   // Popover
-  { cssVar: '--semantic-bg-overlay', tailwindKey: 'popover', paletteKey: 'popover' },
   {
-    cssVar: '--semantic-text-primary',
+    cssVar: '--av-popover',
+    tailwindKey: 'popover',
+    paletteKey: 'popover',
+  },
+  {
+    cssVar: '--av-popover-foreground',
     tailwindKey: 'popover.foreground',
     paletteKey: 'popoverForeground',
   },
 
   // Primary
-  { cssVar: '--semantic-bg-brand', tailwindKey: 'primary', paletteKey: 'primary' },
   {
-    cssVar: '--semantic-text-inverse',
+    cssVar: '--av-primary',
+    tailwindKey: 'primary',
+    paletteKey: 'primary',
+  },
+  {
+    cssVar: '--av-primary-foreground',
     tailwindKey: 'primary.foreground',
     paletteKey: 'primaryForeground',
   },
 
   // Secondary
-  { cssVar: '--semantic-bg-elevated', tailwindKey: 'secondary', paletteKey: 'secondary' },
   {
-    cssVar: '--semantic-text-primary',
+    cssVar: '--av-secondary',
+    tailwindKey: 'secondary',
+    paletteKey: 'secondary',
+  },
+  {
+    cssVar: '--av-secondary-foreground',
     tailwindKey: 'secondary.foreground',
     paletteKey: 'secondaryForeground',
   },
 
   // Muted
-  { cssVar: '--semantic-bg-muted', tailwindKey: 'muted', paletteKey: 'muted' },
   {
-    cssVar: '--semantic-text-secondary',
+    cssVar: '--av-muted',
+    tailwindKey: 'muted',
+    paletteKey: 'muted',
+  },
+  {
+    cssVar: '--av-muted-foreground',
     tailwindKey: 'muted.foreground',
     paletteKey: 'mutedForeground',
   },
 
   // Accent
-  { cssVar: '--semantic-bg-brand', tailwindKey: 'accent', paletteKey: 'accent' },
   {
-    cssVar: '--semantic-text-inverse',
+    cssVar: '--av-accent',
+    tailwindKey: 'accent',
+    paletteKey: 'accent',
+  },
+  {
+    cssVar: '--av-accent-foreground',
     tailwindKey: 'accent.foreground',
     paletteKey: 'accentForeground',
   },
 
   // Destructive
   // Note: destructive.DEFAULT is commented out in both places
-  // { cssVar: '--semantic-status-danger-bg', tailwindKey: 'destructive', paletteKey: 'destructive' },
+  // {
+  //   cssVar: '--semantic-status-danger-bg',
+  //   tailwindKey: 'destructive',
+  //   paletteKey: 'destructive'
+  // },
   // {
   //   cssVar: '--semantic-status-danger-text',
   //   tailwindKey: 'destructive.foreground',
@@ -79,10 +115,22 @@ export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
   // },
 
   // Borders and inputs
-  { cssVar: '--semantic-border-default', tailwindKey: 'border', paletteKey: 'border' },
-  { cssVar: '--semantic-border-default', tailwindKey: 'input', paletteKey: 'input' },
-  { cssVar: '--semantic-interactive-focus', tailwindKey: 'ring', paletteKey: 'ring' },
-]
+  {
+    cssVar: '--av-border',
+    tailwindKey: 'border',
+    paletteKey: 'border',
+  },
+  {
+    cssVar: '--av-input',
+    tailwindKey: 'input',
+    paletteKey: 'input',
+  },
+  {
+    cssVar: '--av-ring',
+    tailwindKey: 'ring',
+    paletteKey: 'ring',
+  },
+];
 
 /**
  * Helper to get CSS var → Palette key mapping for runtime use
