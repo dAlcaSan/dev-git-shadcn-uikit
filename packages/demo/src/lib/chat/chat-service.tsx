@@ -99,9 +99,9 @@ export function ChatProvider({ children }: ChatProviderProps) {
     dispatch({ type: 'SET_TYPING', payload: true });
 
     let timeoutId: NodeJS.Timeout;
-    
+
     // Determine which bot is responding
-    const currentBotMode = stateRef.current.botMode === 'conversation' 
+    const currentBotMode = stateRef.current.botMode === 'conversation'
       ? (botInstanceRef.current === elizaBot ? 'eliza' : 'hal9000')
       : stateRef.current.botMode;
 
@@ -115,7 +115,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
         clearTimeout(timeoutId);
         throw err;
       });
-    
+
     const timeoutPromise = new Promise<{ response: string; botMode: BotMode }>((_, reject) => {
       timeoutId = setTimeout(() => {
         reject(new Error('Response timeout'));
@@ -135,7 +135,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
           }
         };
         dispatch({ type: 'RECEIVE_MESSAGE', payload: botMessage });
-        
+
         // In conversation mode, trigger another response automatically
         if (stateRef.current.botMode === 'conversation') {
           setTimeout(() => {
@@ -181,7 +181,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
 
     // Generate bot response asynchronously without blocking
     console.log('Sending message to bot:', botInstanceRef.current?.constructor.name);
-    
+
     if (!botInstanceRef.current) {
       console.error('Bot instance is null!');
       dispatch({ type: 'SET_ERROR', payload: 'Bot not initialized' });
@@ -190,9 +190,9 @@ export function ChatProvider({ children }: ChatProviderProps) {
     }
 
     let timeoutId: NodeJS.Timeout;
-    
+
     // Determine which bot is responding
-    const currentBotMode = stateRef.current.botMode === 'conversation' 
+    const currentBotMode = stateRef.current.botMode === 'conversation'
       ? (botInstanceRef.current === elizaBot ? 'eliza' : 'hal9000')
       : stateRef.current.botMode;
 
@@ -207,7 +207,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
         clearTimeout(timeoutId); // Cancel timeout on error too
         throw err;
       });
-    
+
     const timeoutPromise = new Promise<{ response: string; botMode: BotMode }>((_, reject) => {
       timeoutId = setTimeout(() => {
         console.log('Bot response timeout!');
@@ -229,7 +229,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
           }
         };
         dispatch({ type: 'RECEIVE_MESSAGE', payload: botMessage });
-        
+
         // In conversation mode, trigger another response automatically
         if (stateRef.current.botMode === 'conversation') {
           setTimeout(() => {
@@ -241,7 +241,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
       .catch((error) => {
         console.error('Bot response error:', error);
         clearTimeout(timeoutId); // Ensure timeout is cleared
-        const errorMessage = error.message === 'Response timeout' 
+        const errorMessage = error.message === 'Response timeout'
           ? 'Bot response timed out. Please try again.'
           : 'Failed to generate response';
         dispatch({ type: 'SET_ERROR', payload: errorMessage });
@@ -251,7 +251,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
     return userMessage;
   };
 
-  const _answerQuestion = async (option: string): Promise<void> => {
+  const answerQuestion = async (option: string): Promise<void> => {
     dispatch({ type: 'ANSWER_QUESTION', payload: option });
 
     try {
@@ -342,7 +342,8 @@ export function ChatProvider({ children }: ChatProviderProps) {
     loadSession,
     clearSession,
     subscribe,
-    getState
+    getState,
+    answerQuestion
   }), [sendMessage, getMessages, clearMessages, setBotMode, getBotMode, getAvailableBots, saveSession, loadSession, clearSession, subscribe, getState]);
 
   return (
