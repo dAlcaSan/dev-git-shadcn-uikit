@@ -59,6 +59,10 @@ export default defineConfig({
         'lucide-react',
       ],
       output: {
+        // Enable tree-shaking by preserving module structure
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
