@@ -41,13 +41,15 @@ applyTheme('acronis-ocean');
 Import the theme styles in your application:
 
 ```typescript
-// Import all themes (larger bundle)
-import '@acronis/shadcn-uikit/styles/themes';
+// Main styles (includes default theme)
+import '@acronis-platform/shadcn-uikit/styles';
 
-// OR import specific themes (smaller bundle)
-import '@acronis/shadcn-uikit/styles/themes/acronis-default';
-import '@acronis/shadcn-uikit/styles/themes/acronis-ocean';
+// OR import specific themes separately (tree-shakeable)
+import '@acronis-platform/shadcn-uikit/styles/themes/acronis-default';
+import '@acronis-platform/shadcn-uikit/styles/themes/acronis-ocean';
 ```
+
+**Note:** The main `styles` import already includes the default theme via semantic tokens. You only need to import additional theme CSS files if you want to use alternative themes like `acronis-ocean`.
 
 ### 2. Initialize Theme System
 
@@ -397,10 +399,14 @@ export function ThemeProvider({ children }) {
 
 ### Theme not applying
 
-Make sure you've imported the theme styles:
+Make sure you've imported the main styles or specific theme CSS:
 
 ```typescript
-import '@acronis/shadcn-uikit/styles/themes/acronis-default';
+// Main styles (includes default theme)
+import '@acronis-platform/shadcn-uikit/styles';
+
+// Or specific theme
+import '@acronis-platform/shadcn-uikit/styles/themes/acronis-ocean';
 ```
 
 ### Dark mode not working

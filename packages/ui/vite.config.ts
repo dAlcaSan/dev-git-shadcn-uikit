@@ -23,11 +23,14 @@ export default defineConfig({
     }),
   ],
   build: {
+    cssCodeSplit: true,
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         react: resolve(__dirname, 'src/react.ts'),
         styles: resolve(__dirname, 'src/styles/index.scss'),
+        'themes/acronis-default': resolve(__dirname, 'src/styles/theme-acronis-default.scss'),
+        'themes/acronis-ocean': resolve(__dirname, 'src/styles/theme-acronis-ocean.scss'),
       },
       formats: ['es'],
       fileName: (format, entryName) => `${entryName}.js`,
@@ -61,7 +64,11 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'styles.css'
+          // Main styles output
+          if (assetInfo.name === 'style.css' || assetInfo.name === 'styles.css') {
+            return 'shadcn-uikit.css'
+          }
+          // Theme CSS files are already named correctly by cssCodeSplit
           return assetInfo.name || 'assets/[name]-[hash][extname]'
         },
       },

@@ -16,6 +16,9 @@
       "types": "./dist/react.d.ts"
     },
     "./styles": "./dist/shadcn-uikit.css",
+    "./styles/themes": "./dist/themes/acronis-default.css",
+    "./styles/themes/acronis-default": "./dist/themes/acronis-default.css",
+    "./styles/themes/acronis-ocean": "./dist/themes/acronis-ocean.css",
     "./components/*": "./dist/components/*"
   },
   "files": [
