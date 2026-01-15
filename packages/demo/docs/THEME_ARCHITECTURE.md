@@ -1,26 +1,109 @@
-# Theme Architecture - Single Source of Truth
+# Theme Architecture
 
-## Problem Solved
+## Overview
 
-Previously, we had **two separate mappings** for the same theme configuration:
+The shadcn-uikit uses a **3-layer token architecture** for theming:
 
-1. Tailwind config (`tailwind.config.js`) - CSS var → Tailwind color names
-2. Runtime mapping (`cssVariables.ts`) - CSS var → Palette keys
+```
+Layer 1: Primitives (Figma colors)
+    ↓
+Layer 2: Semantic Tokens (purpose-based)
+    ↓
+Layer 3: Tailwind Tokens (utility classes)
+    ↓
+Components
+```
 
-This caused:
+## UI Package Token System (Production)
 
-- ❌ Duplication and maintenance overhead
-- ❌ Risk of inconsistencies (e.g., commented out `destructive` in one place but not the other)
-- ❌ No compile-time validation
+### Layer 1: Primitive Tokens (`primitives.scss`)
 
-## New Architecture
+Foundation colors directly from Figma design system:
+
+```scss
+:root {
+  /* Brand Colors */
+  --color-brand-primary: 213 65% 46%;
+  --color-brand-secondary: 211 100% 45%;
+
+  /* Text Colors */
+  --color-text-primary: 215 26% 20%;
+  --color-text-inverse: 0 0% 100%;
+
+  /* Status Colors */
+  --color-status-success: 73 68% 45%;
+  --color-status-danger: 0 77% 57%;
+  // ... etc
+}
+```
+
+**Purpose**: Raw color values that should NOT be used directly in components.
+
+### Layer 2: Semantic Tokens (`semantic.scss`)
+
+Purpose-based mappings that define color meaning:
+
+```scss
+:root {
+  /* Map primitives to semantic purpose */
+  --av-background: var(--color-surface-primary);
+  --av-foreground: var(--color-text-primary);
+  --av-primary: var(--color-brand-primary);
+  --av-border: 213 65% 85%;
+  // ... etc
+}
+
+.dark {
+  /* Override for dark mode */
+  --av-background: var(--color-text-primary);
+  --av-foreground: var(--color-surface-primary);
+  // ... etc
+}
+```
+
+**Purpose**: Define what colors mean (background, foreground, primary, etc.) and enable theme switching.
+
+### Layer 3: Tailwind Config
+
+Maps semantic tokens to Tailwind utility classes:
+
+```javascript
+// packages/ui/tailwind.config.js
+theme: {
+  extend: {
+    colors: {
+      background: 'hsl(var(--av-background))',
+      foreground: 'hsl(var(--av-foreground))',
+      primary: {
+        DEFAULT: 'hsl(var(--av-primary))',
+        foreground: 'hsl(var(--av-primary-foreground))',
+      },
+      // ... etc
+    }
+  }
+}
+```
+
+**Purpose**: Enable Tailwind classes like `bg-background`, `text-primary`, etc.
+
+### Benefits of This Architecture
+
+✅ **Clear separation of concerns** - Each layer has a specific purpose  
+✅ **Easy theming** - Change primitives or semantic mappings without touching components  
+✅ **Dark mode support** - Override semantic tokens in `.dark` class  
+✅ **Type safety** - HSL format works with Tailwind  
+✅ **Figma alignment** - Primitives match design system exactly
+
+## Demo Playground System (Development Tool)
+
+The demo app includes a **separate theme playground** for testing custom themes:
 
 ### Single Source of Truth: `themeConfig.ts`
 
-All theme color mappings are now defined in **one place**:
+All playground theme mappings are defined in one place:
 
 ```typescript
-// packages/demo-app/src/lib/playground/themeConfig.ts
+// packages/demo/src/lib/playground/themeConfig.ts
 export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
   {
     cssVar: '--av-background',
@@ -31,7 +114,7 @@ export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
 ];
 ```
 
-### How It Works
+### How Playground Works
 
 ```
 ┌─────────────────────────────────────────┐
@@ -39,37 +122,33 @@ export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
 │   THEME_COLOR_MAPPINGS: Array<Mapping>  │
 └────────────┬────────────────────────────┘
              │
-       ┌─────┴─────┐
-       │           │
-       ▼           ▼
-┌─────────────┐  ┌──────────────────┐
-│  Tailwind   │  │  Runtime (JS)    │
-│  Config     │  │  cssVariables.ts │
-│  (Build)    │  │  (Runtime)       │
-└─────────────┘  └──────────────────┘
-       │                  │
-       ▼                  ▼
-   CSS classes      document.style
+             ▼
+      ┌──────────────────┐
+      │  Runtime (JS)    │
+      │  cssVariables.ts │
+      └──────────────────┘
+             │
+             ▼
+      document.style.setProperty()
 ```
 
-### Benefits
+**Purpose**: Allows developers to test custom color palettes by dynamically applying CSS variables at runtime.
 
-✅ **Single source of truth** - Change once, updates everywhere
-✅ **Type safety** - TypeScript validates all mappings
+### Playground Benefits
+
+✅ **Single source of truth** - Change once, updates everywhere  
+✅ **Type safety** - TypeScript validates all mappings  
+✅ **Live preview** - See theme changes instantly  
 ✅ **No duplication** - Mappings defined once
-✅ **Easy maintenance** - Add/remove colors in one place
-✅ **Consistency guaranteed** - Impossible to have mismatched configs
 
-## Usage
-
-### Runtime (Current Implementation)
+### Runtime Implementation
 
 ```typescript
-// cssVariables.ts
+// packages/demo/src/lib/playground/cssVariables.ts
 import { getCssVarToPaletteMap } from './themeConfig';
 
 function applyColorPalette(root: HTMLElement, palette: ColorPalette): void {
-  const colorMap = getCssVarToPaletteMap(); // ✅ Generated from single source
+  const colorMap = getCssVarToPaletteMap();
 
   Object.entries(colorMap).forEach(([cssVar, paletteKey]) => {
     const colorToken = palette[paletteKey as keyof ColorPalette];
@@ -80,79 +159,157 @@ function applyColorPalette(root: HTMLElement, palette: ColorPalette): void {
 }
 ```
 
-### Tailwind Config (Optional Future Enhancement)
+## File Locations
 
-You can also generate Tailwind colors from the same source:
+### UI Package (Production)
 
-```javascript
-// tailwind.config.js
-import { generateTailwindColors } from './themeConfig';
+- `packages/ui/src/styles/tokens/primitives.scss` - Layer 1: Primitive tokens
+- `packages/ui/src/styles/tokens/semantic.scss` - Layer 2: Semantic tokens
+- `packages/ui/tailwind.config.js` - Layer 3: Tailwind config
 
-export default {
-  theme: {
-    extend: {
-      colors: {
-        ...generateTailwindColors(), // ✅ Generated from single source
-        // Additional status colors can be added manually if needed
-      },
-    },
-  },
-};
+### Demo Package (Playground)
+
+- `packages/demo/src/lib/playground/themeConfig.ts` - Playground mappings
+- `packages/demo/src/lib/playground/cssVariables.ts` - Runtime application
+- `packages/demo/src/types/playground/tokens.ts` - Type definitions
+
+## Recommended Approach: Token Order
+
+The current **primitives → semantic → Tailwind** order is **excellent** and follows industry best practices:
+
+✅ **Scalable** - Easy to add new themes or color schemes  
+✅ **Maintainable** - Changes cascade through layers automatically  
+✅ **Flexible** - Can swap entire color systems by changing primitives  
+✅ **Standard** - Matches design token methodology used by major design systems
+
+**Recommendation**: Keep this architecture. It's well-designed and production-ready.
+
+## Proposed: Color Scheme Management
+
+### Current Limitations
+
+The UI package currently has:
+
+- ❌ Only one color scheme (Acronis brand colors)
+- ❌ Dark mode defined inline in `semantic.scss`
+- ❌ No easy way for consumers to apply different themes
+
+### Recommended Solution: CSS Class-Based Themes
+
+Create separate CSS files for each color scheme that can be applied via classes:
+
+```scss
+// packages/ui/src/styles/themes/acronis-default.scss
+.theme-acronis-default {
+  &:root,
+  &.light {
+    --color-brand-primary: 213 65% 46%;
+    --color-brand-secondary: 211 100% 45%;
+    // ... all primitives
+  }
+
+  &.dark {
+    --color-brand-primary: 213 65% 56%;
+    // ... dark mode overrides
+  }
+}
+
+// packages/ui/src/styles/themes/acronis-blue.scss
+.theme-acronis-blue {
+  &:root,
+  &.light {
+    --color-brand-primary: 210 100% 50%;
+    // ... different blue palette
+  }
+}
+
+// packages/ui/src/styles/themes/custom.scss
+.theme-custom {
+  // Consumer can override this file
+}
 ```
 
-## Making Changes
+### Implementation Plan
 
-### To Add a New Color
+**1. Create theme files structure:**
 
-Edit **only** `themeConfig.ts`:
+```
+packages/ui/src/styles/themes/
+├── index.scss           # Export all themes
+├── acronis-default.scss # Current Acronis theme
+├── acronis-ocean.scss   # Alternative blue theme
+└── _template.scss       # Template for custom themes
+```
+
+**2. Update semantic tokens to use CSS classes:**
+
+```scss
+// semantic.scss - Remove :root, use theme classes
+@layer base {
+  // Default theme applied to root
+  :root {
+    @include theme-acronis-default;
+  }
+}
+```
+
+**3. Provide theme switcher utility:**
 
 ```typescript
-export const THEME_COLOR_MAPPINGS: ThemeColorMapping[] = [
-  // ... existing mappings
-  {
-    cssVar: '--av-status-success-bg',
-    tailwindKey: 'success',
-    paletteKey: 'success',
-  },
-];
+// packages/ui/src/utils/theme-switcher.ts
+export function applyTheme(
+  theme: 'acronis-default' | 'acronis-ocean' | 'custom'
+) {
+  document.documentElement.className = `theme-${theme}`;
+}
+
+export function applyColorMode(mode: 'light' | 'dark') {
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+}
 ```
 
-Both runtime and Tailwind will automatically pick up the change.
-
-### To Remove a Color
-
-Comment it out or remove it from `THEME_COLOR_MAPPINGS` - that's it!
+**4. Document usage:**
 
 ```typescript
-// Commented out in ONE place, affects both runtime and Tailwind
-// { cssVar: '--semantic-status-danger-bg', tailwindKey: 'destructive', paletteKey: 'destructive' },
+// Consumer usage
+import { applyTheme, applyColorMode } from '@acronis/shadcn-uikit';
+
+// Apply theme
+applyTheme('acronis-ocean');
+
+// Toggle dark mode
+applyColorMode('dark');
 ```
 
-## Migration Notes
+### Alternative Approaches Comparison
 
-### Current State
+| Approach                               | Pros                                                                                          | Cons                                                                 | Recommendation          |
+| -------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ----------------------- |
+| **CSS Classes** (Recommended)          | ✅ No JS required<br>✅ SSR-friendly<br>✅ Fast switching<br>✅ Can bundle only needed themes | ❌ Larger CSS bundle if all themes included                          | **Best for production** |
+| **Inline Styles (Current Playground)** | ✅ Dynamic<br>✅ Good for testing                                                             | ❌ No SSR<br>❌ Performance overhead<br>❌ Flash of unstyled content | Good for dev tools only |
+| **JS Variables**                       | ✅ Type-safe<br>✅ Programmatic                                                               | ❌ Requires JS<br>❌ Runtime overhead<br>❌ Complex implementation   | Avoid for themes        |
 
-- ✅ Runtime code (`cssVariables.ts`) now uses `themeConfig.ts`
-- ⚠️ Tailwind config still has manual mappings (optional to migrate)
+### Recommended: Hybrid Approach
 
-### Future Enhancement (Optional)
+**For UI Package (Production):**
 
-If you want Tailwind to also use the single source:
+- Use CSS class-based themes (2-3 pre-built schemes)
+- Ship with Acronis default + 1-2 alternatives
+- Provide template for custom themes
+- Document how to create custom themes
 
-1. Update `tailwind.config.js` to import `generateTailwindColors()`
-2. Replace manual color definitions with the generated ones
-3. Keep status colors (success, warning, etc.) as manual additions since they're not in the playground palette
+**For Demo Package (Development):**
 
-## Files Changed
+- Keep current playground system for testing
+- Add "Export to CSS" feature to generate theme files
+- Use playground to prototype new themes
 
-- ✅ **Created**: `src/lib/playground/themeConfig.ts` - Single source of truth
-- ✅ **Updated**: `src/lib/playground/cssVariables.ts` - Now imports from themeConfig
-- ⚠️ **Optional**: `tailwind.config.js` - Can be updated to use themeConfig
+### Benefits of This Approach
 
-## Validation
-
-The mapping is now type-safe and validated at compile time:
-
-- CSS variable names are strings
-- Tailwind keys match the Tailwind color structure
-- Palette keys are validated against `ColorPalette` type
+✅ **Zero JS overhead** - Themes are pure CSS  
+✅ **SSR compatible** - Works with server-side rendering  
+✅ **Tree-shakeable** - Import only themes you need  
+✅ **Fast switching** - Just change a class name  
+✅ **Easy customization** - Override CSS variables  
+✅ **Multiple schemes** - Ship 2-3 pre-built themes  
+✅ **Developer-friendly** - Clear documentation and templates
