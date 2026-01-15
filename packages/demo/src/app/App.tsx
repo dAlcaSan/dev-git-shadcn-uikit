@@ -9,6 +9,7 @@ import { DashboardPage } from './routes/dashboard/DashboardPage'
 import { DataTablePage } from './routes/data/DataTablePage'
 import { SettingsPage } from './routes/settings/SettingsPage'
 import ChatRoute from './demo/chat/route'
+import CyberChatRoute from './demo/cyberchat/route'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
 export function DemoApp() {
@@ -18,6 +19,7 @@ export function DemoApp() {
         <AuthProvider>
         <Routes>
         <Route path="login" element={<LoginPage />} />
+        <Route path="cyberchat" element={<CyberChatRoute />} />
         <Route
           path="/"
           element={

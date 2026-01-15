@@ -14,14 +14,16 @@ export function Home() {
         <div className="rounded-lg border p-6">
           <h3 className="mb-2 text-lg font-semibold">Components</h3>
           <p className="text-sm text-muted-foreground">
-            Explore our collection of reusable UI components built with React and TypeScript.
+            Explore our collection of reusable UI components built with React
+            and TypeScript.
           </p>
         </div>
 
         <div className="rounded-lg border p-6">
           <h3 className="mb-2 text-lg font-semibold">Design System</h3>
           <p className="text-sm text-muted-foreground">
-            All components follow the Acronis design system with consistent styling and behavior.
+            All components follow the Acronis design system with consistent
+            styling and behavior.
           </p>
         </div>
 
@@ -43,7 +45,8 @@ export function Home() {
 
         <div className="rounded-lg border p-6">
           <h3 className="mb-2 text-lg font-semibold">
-            <Link to="/demo">Demo</Link>
+            <Link to="/demo">Demo</Link>,
+            <Link to="/demo/cyberchat">Chat</Link>
           </h3>
           <p className="text-sm text-muted-foreground">
             Full-featured demo application
@@ -63,7 +66,8 @@ export function Home() {
       <div className="rounded-lg border p-6">
         <h2 className="mb-4 text-2xl font-semibold">Getting Started</h2>
         <p className="mb-4 text-muted-foreground">
-          Select a component from the sidebar to view its demo and explore different variations.
+          Select a component from the sidebar to view its demo and explore
+          different variations.
         </p>
         <ul className="list-inside list-disc space-y-2 text-sm text-muted-foreground">
           <li>Each component includes multiple examples and use cases</li>
@@ -73,5 +77,5 @@ export function Home() {
         </ul>
       </div>
     </div>
-  )
+  );
 }
