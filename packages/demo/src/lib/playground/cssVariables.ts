@@ -8,11 +8,28 @@ export function applyTokenSet(tokenSet: TokenSet, theme: ThemeMode): void {
   const root = document.documentElement
   const palette = theme === ThemeMode.DARK ? tokenSet.dark : tokenSet.light
 
+  // Apply theme-specific class to root element
+  applyThemeClass(root, tokenSet.id)
+
   // Apply color variables
   applyColorPalette(root, palette)
 
   // Apply radius variables
   applyRadiusVariables(root, tokenSet.radius)
+}
+
+/**
+ * Apply theme-specific class to root element
+ */
+function applyThemeClass(root: HTMLElement, tokenSetId: string): void {
+  // Remove any existing theme-* classes
+  const existingThemeClasses = Array.from(root.classList).filter(cls => cls.startsWith('theme-'))
+  existingThemeClasses.forEach(className => root.classList.remove(className))
+
+  // Apply theme class based on token set ID
+  // Convert tokenSetId to theme class name (e.g., 'chat' -> 'theme-cyber-chat', 'ocean' -> 'theme-ocean')
+  const themeClassName = tokenSetId === 'chat' ? 'theme-cyber-chat' : `theme-${tokenSetId}`
+  root.classList.add(themeClassName)
 }
 
 /**
