@@ -51,10 +51,10 @@
   --av-background: var(--color-surface-primary);
   --av-foreground: var(--color-text-primary);
   
-  /* Card */
-  --av-card: var(--color-surface-secondary);
-  --av-card-foreground: var(--color-text-primary);
-  --av-card-border: var(--color-border-secondary);
+  /* Card - inherit from token system for dynamic theming */
+  /* --av-card: 210 50% 97%; */ /* Commented out to allow token switching */
+  /* --av-card-foreground: var(--color-text-primary); */
+  /* --av-card-border: var(--color-border-secondary); */
   
   /* Popover */
   --av-popover: var(--color-surface-primary);
@@ -64,13 +64,13 @@
   --av-primary: var(--color-brand-primary);
   --av-primary-foreground: var(--color-text-inverse);
   
-  /* Secondary */
-  --av-secondary: 210 30% 94%; /* #EEF4FA - Subtle blue for secondary elements */
-  --av-secondary-foreground: var(--color-text-primary);
+  /* Secondary - inherit from token system for dynamic theming */
+  /* --av-secondary: 210 30% 94%; */ /* Commented out to allow token switching */
+  /* --av-secondary-foreground: var(--color-text-primary); */
   
-  /* Muted */
-  --av-muted: 210 50% 97%; /* #F4F7FC - Light blue-gray matching Figma table background */
-  --av-muted-foreground: var(--color-text-secondary);
+  /* Muted - inherit from token system for dynamic theming */
+  /* --av-muted: 210 50% 97%; */ /* Commented out to allow token switching */
+  /* --av-muted-foreground: var(--color-text-secondary); */
   
   /* Accent */
   --av-accent: var(--color-surface-tertiary);
@@ -96,9 +96,9 @@
   --av-info: var(--color-status-info);
   --av-info-foreground: var(--color-text-inverse);
   
-  /* Border */
-  --av-border: var(--color-border-primary);
-  --av-border-accent: var(--color-border-accent);
+  /* Border - inherit from token system for dynamic theming */
+  /* --av-border: 210 40% 93%; */ /* Commented out to allow token switching */
+  /* --av-border-accent: var(--color-border-accent); */
   
   /* Input */
   --av-input: var(--color-border-primary);
