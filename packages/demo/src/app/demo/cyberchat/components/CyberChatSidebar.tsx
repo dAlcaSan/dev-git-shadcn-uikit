@@ -6,10 +6,11 @@ import {
   Input,
   ScrollArea,
 } from '@acronis-platform/shadcn-uikit/react'
-import { Search, Plus, Settings } from 'lucide-react'
+import { Search, Plus } from 'lucide-react'
 import { useCyberChatStore } from '../store/useCyberChatStore'
 import { CollapsibleTree } from './CollapsibleTree'
 import { ChatListItem } from './ChatListItem'
+import { SettingsDialog } from './SettingsDialog'
 import { filterBySearchQuery } from '../utils/helpers'
 
 export function CyberChatSidebar() {
@@ -160,17 +161,7 @@ export function CyberChatSidebar() {
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium truncate">Jorge Borloni</p>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-6 w-6"
-            onClick={() => {
-              // TODO: Open settings
-              console.log('Settings')
-            }}
-          >
-            <Settings className="h-4 w-4" />
-          </Button>
+          <SettingsDialog />
         </div>
       </div>
     </div>
