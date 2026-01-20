@@ -7,6 +7,7 @@ import { ThemeMode } from '@/types/playground/index.ts'
 import { ThemeSwitcher } from '@/components/playground/ThemeSwitcher.tsx'
 import { TokenSelector } from '@/components/playground/TokenSelector.tsx'
 import { TokenEditor } from '@/components/playground/TokenEditor.tsx'
+import { TypographyEditor } from '@/components/playground/TypographyEditor.tsx'
 import { ComponentShowcase } from '@/components/playground/ComponentShowcase.tsx'
 import { Button, Tabs, TabsContent, TabsList, TabsTrigger, ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@acronis-platform/shadcn-uikit/react'
 import { ChatComponentsShowcase } from '@/components/playground/ChatComponentsShowcase.tsx';
@@ -59,18 +60,34 @@ const PlaygroundPage: React.FC = () => {
       <main className="flex-1 w-full overflow-hidden">
         <ResizablePanelGroup direction="horizontal" className="h-full">
           <ResizablePanel id="token-editor" defaultSize={40} minSize={20} collapsible={false}>
-            <section className="bg-background p-6 overflow-y-auto h-full">
-              <div className="max-w-3xl mx-auto space-y-6">
-                <div>
-                  <h2 className="text-2xl font-semibold mb-2">Token Editor</h2>
-                  <p className="text-sm text-muted-foreground">
-                    Customize colors, radius, and other design tokens. Changes
-                    apply in real-time.
-                  </p>
+            <section className="bg-background overflow-y-auto h-full">
+              <Tabs defaultValue="tokens" className="h-full flex flex-col">
+                <div className="flex-shrink-0 p-6 pb-4 border-b border-border">
+                  <div className="max-w-3xl mx-auto space-y-4">
+                    <div>
+                      <h2 className="text-2xl font-semibold mb-2">Design System</h2>
+                      <p className="text-sm text-muted-foreground">
+                        Customize colors, typography, and other design tokens
+                      </p>
+                    </div>
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="tokens">Tokens</TabsTrigger>
+                      <TabsTrigger value="typography">Typography</TabsTrigger>
+                    </TabsList>
+                  </div>
                 </div>
 
-                <TokenEditor />
-              </div>
+                <div className="flex-1 overflow-y-auto p-6">
+                  <div className="max-w-3xl mx-auto">
+                    <TabsContent value="tokens" className="mt-0">
+                      <TokenEditor />
+                    </TabsContent>
+                    <TabsContent value="typography" className="mt-0">
+                      <TypographyEditor />
+                    </TabsContent>
+                  </div>
+                </div>
+              </Tabs>
             </section>
           </ResizablePanel>
 
