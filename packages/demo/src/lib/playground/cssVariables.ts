@@ -62,6 +62,45 @@ function applyRadiusVariables(root: HTMLElement, radius: TokenSet['radius']): vo
 }
 
 /**
+ * Typography settings interface
+ */
+export interface TypographySettings {
+  fontFamily: string
+  fontFamilyStack: string
+  fontSize: string
+  lineHeight: string
+  letterSpacing: string
+}
+
+/**
+ * Apply typography CSS variables
+ */
+export function applyTypographySettings(settings: TypographySettings): void {
+  const root = document.documentElement
+  root.style.setProperty('--av-font-sans', settings.fontFamilyStack)
+  root.style.setProperty('--av-font-size-base', settings.fontSize)
+  root.style.setProperty('--av-line-height-base', settings.lineHeight)
+  root.style.setProperty('--av-letter-spacing-base', settings.letterSpacing)
+}
+
+/**
+ * Remove typography CSS variables
+ */
+export function removeTypographySettings(): void {
+  const root = document.documentElement
+  const variablesToRemove = [
+    '--av-font-sans',
+    '--av-font-size-base',
+    '--av-line-height-base',
+    '--av-letter-spacing-base',
+  ]
+  
+  variablesToRemove.forEach((variable) => {
+    root.style.removeProperty(variable)
+  })
+}
+
+/**
  * Remove all playground CSS variables
  */
 export function removeTokenSet(): void {

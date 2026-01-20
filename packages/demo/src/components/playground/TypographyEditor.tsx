@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Button } from '@acronis-platform/shadcn-uikit/react'
 import { RotateCcw } from 'lucide-react'
+import { applyTypographySettings, TypographySettings } from '@/lib/playground/cssVariables'
 
 const FONT_FAMILIES = [
   { value: 'system-ui', label: 'System UI', stack: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' },
@@ -47,15 +48,9 @@ const LETTER_SPACINGS = [
   { value: '0.1em', label: 'Widest (0.1em)' },
 ]
 
-interface TypographySettings {
-  fontFamily: string
-  fontSize: string
-  lineHeight: string
-  letterSpacing: string
-}
-
 const DEFAULT_SETTINGS: TypographySettings = {
   fontFamily: 'system-ui',
+  fontFamilyStack: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   fontSize: '16px',
   lineHeight: '1.5',
   letterSpacing: '0',
@@ -77,14 +72,7 @@ export const TypographyEditor: React.FC = () => {
   })
 
   useEffect(() => {
-    const selectedFont = FONT_FAMILIES.find(f => f.value === settings.fontFamily)
-    if (selectedFont) {
-      document.documentElement.style.setProperty('--font-sans', selectedFont.stack)
-    }
-    document.documentElement.style.setProperty('--font-size-base', settings.fontSize)
-    document.documentElement.style.setProperty('--line-height-base', settings.lineHeight)
-    document.documentElement.style.setProperty('--letter-spacing-base', settings.letterSpacing)
-
+    applyTypographySettings(settings)
     localStorage.setItem('playground-typography', JSON.stringify(settings))
   }, [settings])
 
@@ -116,7 +104,16 @@ export const TypographyEditor: React.FC = () => {
           <label className="text-sm font-medium">Font Family</label>
           <Select
             value={settings.fontFamily}
-            onValueChange={(value) => setSettings({ ...settings, fontFamily: value })}
+            onValueChange={(value) => {
+              const selectedFont = FONT_FAMILIES.find(f => f.value === value)
+              if (selectedFont) {
+                setSettings({ 
+                  ...settings, 
+                  fontFamily: value,
+                  fontFamilyStack: selectedFont.stack
+                })
+              }
+            }}
           >
             <SelectTrigger>
               <SelectValue />

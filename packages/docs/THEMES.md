@@ -326,6 +326,112 @@ declare module '@acronis/shadcn-uikit' {
 }
 ```
 
+## Typography System
+
+The theme system includes typography customization through CSS variables that integrate seamlessly with Tailwind CSS.
+
+### Available Typography Variables
+
+The following CSS variables control typography across the application:
+
+- `--av-font-sans` - Font family stack for sans-serif text
+- `--av-font-size-base` - Base font size (default: 16px)
+- `--av-line-height-base` - Base line height (default: 1.5)
+- `--av-letter-spacing-base` - Base letter spacing (default: 0)
+
+### Using Typography Variables
+
+Typography variables are automatically applied through Tailwind's configuration:
+
+```tsx
+// Font family is applied via Tailwind's font-sans class
+<div className="font-sans">Uses custom font family</div>
+
+// Base font size and line height
+<p className="text-base">Uses custom base size and line height</p>
+
+// Letter spacing
+<span className="tracking-base">Uses custom letter spacing</span>
+```
+
+### Customizing Typography
+
+You can customize typography in several ways:
+
+#### 1. Via CSS Variables (Recommended for Playground)
+
+```typescript
+// Apply typography settings programmatically
+document.documentElement.style.setProperty(
+  '--av-font-sans',
+  'Inter, system-ui, sans-serif'
+);
+document.documentElement.style.setProperty('--av-font-size-base', '18px');
+document.documentElement.style.setProperty('--av-line-height-base', '1.6');
+document.documentElement.style.setProperty(
+  '--av-letter-spacing-base',
+  '0.025em'
+);
+```
+
+#### 2. Via Theme Files
+
+Add typography settings to your custom theme:
+
+```scss
+.theme-my-custom {
+  /* Typography */
+  --av-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --av-font-size-base: 16px;
+  --av-line-height-base: 1.5;
+  --av-letter-spacing-base: 0;
+}
+```
+
+#### 3. Via Tailwind Config
+
+Extend the Tailwind configuration for more control:
+
+```javascript
+// tailwind.config.js
+export default {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['var(--av-font-sans)', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        base: [
+          'var(--av-font-size-base, 16px)',
+          {
+            lineHeight: 'var(--av-line-height-base, 1.5)',
+          },
+        ],
+      },
+    },
+  },
+};
+```
+
+### Typography in the Playground
+
+The playground includes a Typography Editor that allows real-time customization of:
+
+- **Font Family**: Choose from system fonts and popular web fonts
+- **Base Font Size**: Adjust the base font size (12px - 20px)
+- **Line Height**: Control spacing between lines (1.2 - 2)
+- **Letter Spacing**: Fine-tune character spacing (-0.05em to 0.1em)
+
+All changes are applied immediately and persisted to localStorage.
+
+### Best Practices
+
+1. **Use CSS Variables**: Reference typography variables for consistency
+2. **Test Readability**: Ensure text is readable at different sizes and weights
+3. **Consider Accessibility**: Maintain sufficient contrast and font sizes
+4. **Font Loading**: Use system fonts or ensure web fonts are properly loaded
+5. **Responsive Typography**: Consider different font sizes for different screen sizes
+
 ## Color Format
 
 All colors must use the HSL format **without** the `hsl()` wrapper:

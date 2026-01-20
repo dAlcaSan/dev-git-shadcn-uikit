@@ -26,6 +26,18 @@ export default {
   		}
   	},
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--av-font-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+  		},
+  		fontSize: {
+  			base: ['var(--av-font-size-base, 16px)', { lineHeight: 'var(--av-line-height-base, 1.5)' }],
+  		},
+  		lineHeight: {
+  			base: 'var(--av-line-height-base, 1.5)',
+  		},
+  		letterSpacing: {
+  			base: 'var(--av-letter-spacing-base, 0)',
+  		},
   		colors: {
   			background: 'hsl(var(--av-background))',
   			foreground: 'hsl(var(--av-foreground))',
