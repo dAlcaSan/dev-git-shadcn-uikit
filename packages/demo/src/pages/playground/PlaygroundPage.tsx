@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { usePlaygroundStore } from '@/store/playground/playgroundStore.ts'
-import { applyTokenSet } from '@/lib/playground/cssVariables.ts'
+import { applyTokenSet, applyTypographySettings, TypographySettings } from '@/lib/playground/cssVariables.ts'
 import { ThemeMode } from '@/types/playground/index.ts'
 import { ThemeSwitcher } from '@/components/playground/ThemeSwitcher.tsx'
 import { TokenSelector } from '@/components/playground/TokenSelector.tsx'
@@ -15,6 +15,30 @@ import { ChatComponentsShowcase } from '@/components/playground/ChatComponentsSh
 const PlaygroundPage: React.FC = () => {
   const { theme, activeTokenSetId, tokenSets, customTokenSet } = usePlaygroundStore()
   const [activeTab, setActiveTab] = useState('components')
+
+  // Initialize typography settings on mount
+  useEffect(() => {
+    const DEFAULT_TYPOGRAPHY: TypographySettings = {
+      fontFamily: 'system-ui',
+      fontFamilyStack: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontSize: '16px',
+      lineHeight: '1.5',
+      letterSpacing: '0',
+    }
+
+    const stored = localStorage.getItem('playground-typography')
+    let settings = DEFAULT_TYPOGRAPHY
+
+    if (stored) {
+      try {
+        settings = JSON.parse(stored)
+      } catch {
+        settings = DEFAULT_TYPOGRAPHY
+      }
+    }
+
+    applyTypographySettings(settings)
+  }, [])
 
   useEffect(() => {
     const activeTokenSet = customTokenSet || tokenSets[activeTokenSetId]
