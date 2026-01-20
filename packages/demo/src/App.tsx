@@ -57,6 +57,11 @@ import { PlaygroundPage } from '@/pages/playground/PlaygroundPage.tsx'
 import '@/App.css'
 import { DemoApp } from '@/app/App'
 import { Toaster } from 'sonner'
+import { DashboardPage } from '@/app/routes/dashboard/DashboardPage.tsx';
+import { DataTablePage } from '@/app/routes/data/DataTablePage.tsx';
+import { SettingsPage } from '@/app/routes/settings/SettingsPage.tsx';
+import ChatRoute from '@/app/demo/chat/route.tsx';
+import * as React from 'react';
 
 function App() {
   return (
@@ -65,8 +70,16 @@ function App() {
         <Toaster position="top-right" />
         <Routes>
           <Route path="/demo/*" element={<DemoApp />} />
-          <Route path="/playground" element={<PlaygroundPage />} />
-          <Route path="/input-with-secondary-menu" element={<InputDemoWithSecondaryMenu />} />
+          <Route path="/playground" element={<PlaygroundPage />}>
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="data" element={<DataTablePage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="chat" element={<ChatRoute />} />
+          </Route>
+          <Route
+            path="/input-with-secondary-menu"
+            element={<InputDemoWithSecondaryMenu />}
+          />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="button" element={<ButtonDemo />} />
@@ -127,7 +140,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App

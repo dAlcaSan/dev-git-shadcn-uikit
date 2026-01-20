@@ -11,6 +11,9 @@ import { TypographyEditor } from '@/components/playground/TypographyEditor.tsx'
 import { ComponentShowcase } from '@/components/playground/ComponentShowcase.tsx'
 import { Button, Tabs, TabsContent, TabsList, TabsTrigger, ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@acronis-platform/shadcn-uikit/react'
 import { ChatComponentsShowcase } from '@/components/playground/ChatComponentsShowcase.tsx';
+import { AppLayout } from '@/app/layout/AppLayout.tsx';
+import { LocaleProvider } from '@/app/context/LocaleContext';
+import { AuthProvider } from '@/app/context/AuthContext';
 
 const PlaygroundPage: React.FC = () => {
   const { theme, activeTokenSetId, tokenSets, customTokenSet } = usePlaygroundStore()
@@ -83,13 +86,20 @@ const PlaygroundPage: React.FC = () => {
 
       <main className="flex-1 w-full overflow-hidden">
         <ResizablePanelGroup direction="horizontal" className="h-full">
-          <ResizablePanel id="token-editor" defaultSize={40} minSize={20} collapsible={false}>
+          <ResizablePanel
+            id="token-editor"
+            defaultSize={40}
+            minSize={20}
+            collapsible={false}
+          >
             <section className="bg-background overflow-y-auto h-full">
               <Tabs defaultValue="tokens" className="h-full flex flex-col">
                 <div className="flex-shrink-0 p-6 pb-4 border-b border-border">
                   <div className="max-w-3xl mx-auto space-y-4">
                     <div>
-                      <h2 className="text-2xl font-semibold mb-2">Design System</h2>
+                      <h2 className="text-2xl font-semibold mb-2">
+                        Design System
+                      </h2>
                       <p className="text-sm text-muted-foreground">
                         Customize colors, typography, and other design tokens
                       </p>
@@ -117,7 +127,12 @@ const PlaygroundPage: React.FC = () => {
 
           <ResizableHandle withHandle />
 
-          <ResizablePanel id="component-preview" defaultSize={60} minSize={30} collapsible={false}>
+          <ResizablePanel
+            id="component-preview"
+            defaultSize={60}
+            minSize={30}
+            collapsible={false}
+          >
             <section className="bg-muted/30 flex flex-col h-full overflow-y-auto">
               <Tabs
                 value={activeTab}
@@ -138,8 +153,8 @@ const PlaygroundPage: React.FC = () => {
                     <TabsList className="grid w-full grid-cols-5">
                       <TabsTrigger value="components">Components</TabsTrigger>
                       <TabsTrigger value="chat">Chat</TabsTrigger>
-                      <TabsTrigger value="showcase3" disabled>
-                        Showcase 3
+                      <TabsTrigger value="showcase3">
+                        Demo
                       </TabsTrigger>
                       <TabsTrigger value="showcase4" disabled>
                         Showcase 4
@@ -160,9 +175,12 @@ const PlaygroundPage: React.FC = () => {
                       <ChatComponentsShowcase />
                     </TabsContent>
                     <TabsContent value="showcase3" className="mt-0">
-                      <div className="text-center text-muted-foreground py-8">
-                        Showcase 3 - Coming soon
-                      </div>
+                      <LocaleProvider>
+
+                        <AuthProvider>
+                        <AppLayout />
+                        </AuthProvider>
+                      </LocaleProvider>
                     </TabsContent>
                     <TabsContent value="showcase4" className="mt-0">
                       <div className="text-center text-muted-foreground py-8">

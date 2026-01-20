@@ -19,10 +19,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { titleKey: 'navigation.dashboard', href: '/demo/dashboard', icon: LayoutDashboard },
-  { titleKey: 'navigation.data', href: '/demo/data', icon: Table },
-  { titleKey: 'navigation.chat', href: '/demo/chat', icon: MessageSquare },
-  { titleKey: 'navigation.settings', href: '/demo/settings', icon: Settings },
+  { titleKey: 'navigation.dashboard', href: 'dashboard', icon: LayoutDashboard },
+  { titleKey: 'navigation.data', href: 'data', icon: Table },
+  { titleKey: 'navigation.chat', href: 'chat', icon: MessageSquare },
+  { titleKey: 'navigation.settings', href: 'settings', icon: Settings },
 ]
 
 export function Sidebar({ isCollapsed, onCollapse, className }: SidebarProps) {
