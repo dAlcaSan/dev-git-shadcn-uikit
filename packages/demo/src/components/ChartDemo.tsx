@@ -23,6 +23,7 @@ import {
   ScatterChart,
   Scatter,
   ComposedChart,
+  Treemap,
 } from 'recharts'
 
 
@@ -86,6 +87,138 @@ const composedData = [
   { name: 'Jun', uv: 2390, pv: 3800, amt: 2500 },
   { name: 'Jul', uv: 3490, pv: 4300, amt: 2100 },
 ]
+
+const treemapData = [
+  {
+    name: 'Organizations',
+    children: [
+      {
+        name: 'Westfield Labs Platform',
+        size: 84,
+        status: 'warning',
+        description: '84 unprotected files',
+      },
+      {
+        name: 'Force Touch Cloud',
+        size: 350,
+        status: 'critical',
+        description: '350 unprotected files',
+      },
+      {
+        name: 'Blue Sky Group',
+        size: 200,
+        status: 'success',
+        description: 'All files protected',
+      },
+      {
+        name: 'Ingram Micro',
+        size: 180,
+        status: 'success',
+        description: 'All files protected',
+      },
+      {
+        name: 'Fusion Media',
+        size: 1029,
+        status: 'danger',
+        description: '1 029',
+      },
+      {
+        name: 'Triple C',
+        size: 1256,
+        status: 'danger',
+        description: '1 256',
+      },
+      {
+        name: 'Telstra',
+        size: 170,
+        status: 'critical',
+        description: '170',
+      },
+      {
+        name: 'Land UP',
+        size: 43,
+        status: 'warning',
+        description: '43 unprotected files',
+      },
+      {
+        name: 'Host Europe',
+        size: 246,
+        status: 'critical',
+        description: '246 unprotected files',
+      },
+    ],
+  },
+]
+
+const CustomTreemapContent = (props: any) => {
+  const { x, y, width, height, name, status, description } = props
+
+  const colorMap: Record<string, string> = {
+    danger: CHART_COLORS_SEMANTIC.danger,
+    critical: CHART_COLORS_SEMANTIC.critical,
+    warning: CHART_COLORS_SEMANTIC.warning,
+    success: CHART_COLORS_SEMANTIC.success,
+  }
+
+  const textColorMap: Record<string, string> = {
+    danger: '#FFFFFF',
+    critical: 'rgba(36, 49, 67, 0.9)',
+    warning: 'rgba(36, 49, 67, 0.9)',
+    success: 'rgba(36, 49, 67, 0.9)',
+  }
+
+  const fill = colorMap[status] || CHART_COLORS_SEMANTIC.primary
+  const textColor = textColorMap[status] || '#FFFFFF'
+
+  return (
+    <g>
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        style={{
+          fill,
+          stroke: '#fff',
+          strokeWidth: 4,
+        }}
+      />
+      {width > 60 && height > 40 && (
+        <>
+          <text
+            x={x + width / 2}
+            y={y + height / 2 - 8}
+            textAnchor="middle"
+            fill={textColor}
+            stroke="none"
+          >
+            {name}
+          </text>
+          <text
+            x={x + width / 2}
+            y={y + height / 2 + 12}
+            textAnchor="middle"
+            fill={textColor}
+            stroke="none"
+          >
+            {description}
+          </text>
+        </>
+      )}
+      {width > 30 && width <= 60 && height > 20 && (
+        <text
+          x={x + width / 2}
+          y={y + height / 2 + 4}
+          textAnchor="middle"
+          fill={textColor}
+          fontSize={12}
+        >
+          {description}
+        </text>
+      )}
+    </g>
+  );
+}
 
 export function ChartDemo() {
   // Get automatic colors for multi-series charts
@@ -260,7 +393,10 @@ export function ChartDemo() {
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <Legend />
                     <Bar dataKey="sales" fill={CHART_COLORS_SEMANTIC.primary} />
-                    <Bar dataKey="returns" fill={CHART_COLORS_SEMANTIC.danger} />
+                    <Bar
+                      dataKey="returns"
+                      fill={CHART_COLORS_SEMANTIC.danger}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </ChartContainer>
@@ -285,7 +421,9 @@ export function ChartDemo() {
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      label={({ name, percent }) =>
+                        `${name} ${(percent * 100).toFixed(0)}%`
+                      }
                       outerRadius={120}
                       fill="#8884d8"
                       dataKey="value"
@@ -306,16 +444,29 @@ export function ChartDemo() {
           <Card>
             <CardHeader>
               <CardTitle>Radial Bar Chart</CardTitle>
-              <CardDescription>
-                Age distribution of users
-              </CardDescription>
+              <CardDescription>Age distribution of users</CardDescription>
             </CardHeader>
             <CardContent>
               <ChartContainer config={{}} className="h-[400px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" data={radialData}>
-                    <RadialBar dataKey="uv" cornerRadius={10} fill="hsl(var(--chart-1))" />
-                    <Legend iconSize={10} layout="horizontal" verticalAlign="bottom" align="center" />
+                  <RadialBarChart
+                    cx="50%"
+                    cy="50%"
+                    innerRadius="10%"
+                    outerRadius="80%"
+                    data={radialData}
+                  >
+                    <RadialBar
+                      dataKey="uv"
+                      cornerRadius={10}
+                      fill="hsl(var(--chart-1))"
+                    />
+                    <Legend
+                      iconSize={10}
+                      layout="horizontal"
+                      verticalAlign="bottom"
+                      align="center"
+                    />
                     <ChartTooltip content={<ChartTooltipContent />} />
                   </RadialBarChart>
                 </ResponsiveContainer>
@@ -329,19 +480,31 @@ export function ChartDemo() {
             <Card>
               <CardHeader>
                 <CardTitle>Scatter Chart</CardTitle>
-                <CardDescription>
-                  Correlation between variables
-                </CardDescription>
+                <CardDescription>Correlation between variables</CardDescription>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={{}} className="h-[300px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <ScatterChart>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="x" type="number" name="stature" unit="cm" />
-                      <YAxis dataKey="y" type="number" name="weight" unit="kg" />
+                      <XAxis
+                        dataKey="x"
+                        type="number"
+                        name="stature"
+                        unit="cm"
+                      />
+                      <YAxis
+                        dataKey="y"
+                        type="number"
+                        name="weight"
+                        unit="kg"
+                      />
                       <ChartTooltip content={<ChartTooltipContent />} />
-                      <Scatter name="A school" data={scatterData} fill={CHART_COLORS_SEMANTIC.primary} />
+                      <Scatter
+                        name="A school"
+                        data={scatterData}
+                        fill={CHART_COLORS_SEMANTIC.primary}
+                      />
                     </ScatterChart>
                   </ResponsiveContainer>
                 </ChartContainer>
@@ -377,8 +540,36 @@ export function ChartDemo() {
                       <ChartTooltip content={<ChartTooltipContent />} />
                       <Legend />
                       <Bar dataKey="pv" fill={CHART_COLORS_SEMANTIC.success} />
-                      <Line type="monotone" dataKey="uv" stroke={CHART_COLORS_SEMANTIC.primary} />
+                      <Line
+                        type="monotone"
+                        dataKey="uv"
+                        stroke={CHART_COLORS_SEMANTIC.primary}
+                      />
                     </ComposedChart>
+                  </ResponsiveContainer>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Treemap</CardTitle>
+                <CardDescription>
+                  Data protection map - 15 Organizations
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={{}} className="h-[400px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <Treemap
+                      data={treemapData}
+                      dataKey="size"
+                      nameKey="name"
+                      stroke="#fff"
+                      fill="#8884d8"
+                      animationDuration={500}
+                      content={<CustomTreemapContent />}
+                    />
                   </ResponsiveContainer>
                 </ChartContainer>
               </CardContent>
@@ -387,5 +578,5 @@ export function ChartDemo() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
