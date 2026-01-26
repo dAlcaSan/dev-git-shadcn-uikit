@@ -4,6 +4,7 @@
  * Import order matters:
  * 1. Primitives - Foundation colors from Figma
  * 2. Semantic - Purpose-based mappings
+ * 3. Typography - Font family/sizes/line-heights
  *
  * This provides a clean 3-layer architecture:
  * Figma → CSS Variables → Tailwind → Components
@@ -11,3 +12,4 @@
 
 @use './primitives';
 @use './semantic';
+@use './typography';
