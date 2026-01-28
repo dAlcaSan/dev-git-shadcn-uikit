@@ -38,7 +38,7 @@
     "tailwind.preset.cjs"
   ],
   "scripts": {
-    "build": "pnpm run build:preset && pnpm run build:lib && pnpm run build:llms",
+    "build": "pnpm run build:lib && pnpm run build:llms && pnpm run build:preset",
     "build:preset": "tsx scripts/generate-preset.ts",
     "build:lib": "vite build",
     "build:types": "tsc --project tsconfig.build.json",
