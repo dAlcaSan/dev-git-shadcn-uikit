@@ -1,10 +1,8 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
-  content: [
-    './src/**/*.{js,jsx,ts,tsx,vue}',
-    '../demo-app/src/**/*.{js,jsx,ts,tsx,vue}', // Include demo-app for dev mode
-  ],
+  content: [],
   theme: {
   	container: {
   		center: true,

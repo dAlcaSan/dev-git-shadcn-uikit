@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ['class'],
-  content: [
-    './src/**/*.{js,jsx,ts,tsx,vue}',
-    '../demo-app/src/**/*.{js,jsx,ts,tsx,vue}', // Include demo-app for dev mode
-  ],
   theme: {
   	container: {
   		center: true,
