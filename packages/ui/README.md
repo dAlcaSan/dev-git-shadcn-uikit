@@ -93,12 +93,51 @@ import '@acronis-platform/shadcn-uikit/styles';
 
 - **AvButton** - Interactive buttons (more components coming soon)
 
-## Styling
+## CSS Import Options
 
-The library uses CSS variables for theming. Import the global styles:
+### Full CSS Bundle (Recommended for Quick Start)
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles/full';
+```
+
+- Size: ~200-300KB (uncompressed)
+- Includes all Tailwind utilities (not purged)
+- Best for: Rapid prototyping, small projects
+
+### Optimized Bundle (Recommended for Production)
 
 ```tsx
 import '@acronis-platform/shadcn-uikit/styles';
+```
+
+- Size: ~96KB (current bundle)
+- Includes only CSS used in imported components
+- Best for: Production builds
+
+### Modular Imports (Advanced)
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles/base';
+import '@acronis-platform/shadcn-uikit/styles/components';
+import '@acronis-platform/shadcn-uikit/styles/utilities';
+```
+
+### Tokens Only
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles/tokens';
+```
+
+- Just CSS variables
+- Use with Tailwind preset for custom builds
+
+### Theme Styles
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles/themes/acronis-default';
+import '@acronis-platform/shadcn-uikit/styles/themes/acronis-ocean';
+import '@acronis-platform/shadcn-uikit/styles/themes/cyber-chat';
 ```
 
 ### Customization
@@ -112,6 +151,53 @@ You can customize the theme by overriding CSS variables:
   --av-foreground: 215 26% 20%;
   /* ... more variables */
 }
+```
+
+## Using with Tailwind CSS
+
+If you're building your own Tailwind setup:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  presets: [require('@acronis-platform/shadcn-uikit/tailwind-preset')],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@acronis-platform/shadcn-uikit/dist/**/*.js',
+  ],
+};
+```
+
+Then import only the tokens:
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles/tokens';
+```
+
+This approach:
+
+- Gives you all design tokens as CSS variables
+- Tailwind generates utilities based on preset configuration
+- Smallest bundle size (only utilities you actually use)
+- Full control over Tailwind configuration
+
+### Customizing the Preset
+
+You can extend or override the preset configuration:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  presets: [require('@acronis-platform/shadcn-uikit/tailwind-preset')],
+  theme: {
+    extend: {
+      colors: {
+        // Add your custom colors
+        brand: '#ff0000',
+      },
+    },
+  },
+};
 ```
 
 ## TypeScript
@@ -143,6 +229,31 @@ All components follow the Acronis Design System specifications with design token
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
+
+## Migration Guide
+
+### v0.14.x → v0.15.0
+
+**No Breaking Changes** - All existing imports continue to work.
+
+**Before:**
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles';
+```
+
+**After (same behavior):**
+
+```tsx
+import '@acronis-platform/shadcn-uikit/styles';
+```
+
+**New Options Available:**
+
+- `styles/full` - Complete unpurged CSS
+- `styles/tokens` - CSS variables only
+- `styles/base`, `styles/components`, `styles/utilities` - Modular imports
+- `tailwind-preset` - Tailwind configuration preset
 
 ## License
 
