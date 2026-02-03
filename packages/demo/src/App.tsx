@@ -49,6 +49,18 @@ import { FilterDemo } from '@/components/FilterDemo.tsx'
 import { ContainerDemo } from '@/components/ContainerDemo.tsx'
 import { DataTableDemo } from '@/components/DataTableDemo.tsx'
 import { ChartDemo } from '@/components/ChartDemo.tsx'
+import { ChartPlayground } from '@/components/ChartPlayground.tsx'
+import { BarChartPlayground } from '@/components/BarChartPlayground.tsx'
+import { AreaChartPlayground } from '@/components/AreaChartPlayground.tsx'
+import { PieChartPlayground } from '@/components/PieChartPlayground.tsx'
+import { RadialChartPlayground } from '@/components/RadialChartPlayground.tsx'
+import { ScatterChartPlayground } from '@/components/ScatterChartPlayground.tsx'
+import { ComposedChartPlayground } from '@/components/ComposedChartPlayground.tsx'
+import { RadarChartPlayground } from '@/components/RadarChartPlayground.tsx'
+import { TreemapChartPlayground } from '@/components/TreemapChartPlayground.tsx'
+import { FunnelChartPlayground } from '@/components/FunnelChartPlayground.tsx'
+import { TablePlayground } from '@/components/TablePlayground.tsx'
+import { CardPlayground } from '@/components/CardPlayground.tsx'
 import { PaginationDemo } from '@/components/PaginationDemo.tsx'
 import { PasswordInputDemo } from '@/components/PasswordInputDemo.tsx'
 import { InputDemoWithSecondaryMenu } from '@/components/InputDemoWithSecondaryMenu.tsx'
@@ -118,6 +130,18 @@ function App() {
             <Route path="popover" element={<PopoverDemo />} />
             <Route path="progress" element={<ProgressDemo />} />
             <Route path="chart" element={<ChartDemo />} />
+            <Route path="chart-playground" element={<ChartPlayground />} />
+            <Route path="barchart-playground" element={<BarChartPlayground />} />
+            <Route path="areachart-playground" element={<AreaChartPlayground />} />
+            <Route path="piechart-playground" element={<PieChartPlayground />} />
+            <Route path="radialchart-playground" element={<RadialChartPlayground />} />
+            <Route path="scatterchart-playground" element={<ScatterChartPlayground />} />
+            <Route path="composedchart-playground" element={<ComposedChartPlayground />} />
+            <Route path="radarchart-playground" element={<RadarChartPlayground />} />
+            <Route path="treemapchart-playground" element={<TreemapChartPlayground />} />
+            <Route path="funnelchart-playground" element={<FunnelChartPlayground />} />
+            <Route path="table-playground" element={<TablePlayground />} />
+            <Route path="card-playground" element={<CardPlayground />} />
             <Route path="radio-group" element={<RadioGroupDemo />} />
             <Route path="select" element={<SelectDemo />} />
             <Route path="sonner" element={<SonnerDemo />} />
