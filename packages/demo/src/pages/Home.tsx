@@ -61,6 +61,114 @@ export function Home() {
             Interactive charts built with Recharts
           </p>
         </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/chart-playground">� LineChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Interactive playground to explore LineChart settings
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/barchart-playground">📊 BarChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Explore BarChart: stacked, horizontal, radius, gaps
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/areachart-playground">📈 AreaChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Explore AreaChart: fill opacity, stacked, curves
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/piechart-playground">🥧 PieChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Explore PieChart: donut, angles, padding, labels
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/radialchart-playground">🎯 RadialChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Explore RadialChart: gauges, progress bars, angles
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/scatterchart-playground">🔵 ScatterChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Explore ScatterChart: correlation, point shapes, reference lines
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/composedchart-playground">🔀 ComposedChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Mix Line, Bar, Area in one chart
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/radarchart-playground">🕸️ RadarChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Spider/web charts for multi-dimensional comparison
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/treemapchart-playground">🗂️ TreemapChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Hierarchical data as nested rectangles
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/funnelchart-playground">🔻 FunnelChart Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Sales pipelines and conversion funnels
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/table-playground">📋 Table Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Interactive data table with sorting, pagination, selection
+          </p>
+        </div>
+
+        <div className="rounded-lg border p-6 border-primary">
+          <h3 className="mb-2 text-lg font-semibold">
+            <Link to="/card-playground">🃏 Card Playground</Link>
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Stats, profiles, pricing, media, notifications
+          </p>
+        </div>
       </div>
 
       <div className="rounded-lg border p-6">
