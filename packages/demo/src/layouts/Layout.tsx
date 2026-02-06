@@ -74,6 +74,7 @@ const navigationItems = [
       { id: 'calendar', title: 'Calendar', icon: CalendarDays, path: '/calendar' },
       { id: 'carousel', title: 'Carousel', icon: RectangleHorizontal, path: '/carousel' },
       { id: 'card', title: 'Card', icon: RectangleVertical, path: '/card' },
+      { id: 'chart', title: 'Chart', icon: CheckSquare, path: '/chart' },
       { id: 'checkbox', title: 'Checkbox', icon: CheckSquare, path: '/checkbox' },
       { id: 'chip', title: 'Chip', icon: Tag, path: '/chip' },
       { id: 'combobox', title: 'Combobox', icon: List, path: '/combobox' },
