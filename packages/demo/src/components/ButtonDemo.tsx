@@ -1,45 +1,59 @@
-import { Button } from '@acronis-platform/shadcn-uikit/react'
+import * as React from 'react'
+import {
+  ButtonVariants,
+  ButtonTranslucent,
+  ButtonSizes,
+  ButtonDisabled,
+} from '@/demos/button'
+import { DemoWithCode } from './DemoWithCode'
+
+// Import actual source code files as raw strings
+import buttonVariantsCode from '../demos/button/ButtonVariants.tsx?raw'
+import buttonTranslucentCode from '../demos/button/ButtonTranslucent.tsx?raw'
+import buttonSizesCode from '../demos/button/ButtonSizes.tsx?raw'
+import buttonDisabledCode from '../demos/button/ButtonDisabled.tsx?raw'
 
 export function ButtonDemo() {
   return (
-    <>
-      <section className="demo-section">
-        <h2>Button Variants</h2>
-        <div className="button-grid">
-          <Button variant="default">Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-        </div>
-      </section>
+    <section className="demo-section">
+      <h2>Button Component</h2>
+      <p className="demo-description mb-8 text-muted-foreground">
+        Versatile button component with multiple variants, sizes, and states.
+      </p>
 
-      <section className="demo-section">
-        <h2>Additional Variants</h2>
-        <div className="button-grid">
-          <Button variant="translucent">Translucent</Button>
-        </div>
-      </section>
+      <div className="space-y-8">
+        <DemoWithCode
+          title="Button Variants"
+          description="Different visual styles for various use cases."
+          code={buttonVariantsCode}
+        >
+          <ButtonVariants />
+        </DemoWithCode>
 
-      <section className="demo-section">
-        <h2>Button Sizes</h2>
-        <div className="button-grid">
-          <Button size="sm">Small</Button>
-          <Button size="default">Default</Button>
-          <Button size="lg">Large</Button>
-          <Button size="icon" variant="secondary">
-            ⋯
-          </Button>
-        </div>
-      </section>
+        <DemoWithCode
+          title="Translucent Variant"
+          description="Semi-transparent button style for overlay contexts."
+          code={buttonTranslucentCode}
+        >
+          <ButtonTranslucent />
+        </DemoWithCode>
 
-      <section className="demo-section">
-        <h2>Button States</h2>
-        <div className="button-grid">
-          <Button disabled>Disabled</Button>
-        </div>
-      </section>
-    </>
+        <DemoWithCode
+          title="Button Sizes"
+          description="Various button sizes including icon-only buttons."
+          code={buttonSizesCode}
+        >
+          <ButtonSizes />
+        </DemoWithCode>
+
+        <DemoWithCode
+          title="Disabled State"
+          description="Buttons in disabled state are not interactive."
+          code={buttonDisabledCode}
+        >
+          <ButtonDisabled />
+        </DemoWithCode>
+      </div>
+    </section>
   )
 }
