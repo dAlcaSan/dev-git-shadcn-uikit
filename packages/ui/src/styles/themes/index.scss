@@ -1,14 +1,14 @@
 /**
  * Theme System Entry Point
- * 
+ *
  * Import all available themes here. Consumers can import this file to get all themes,
  * or import specific theme files for tree-shaking.
- * 
+ *
  * Usage:
  *   @use '@acronis/shadcn-uikit/styles/themes';           // All themes
  *   @use '@acronis/shadcn-uikit/styles/themes/acronis-default';  // Specific theme
  */
 
-@use './acronis-default';
-@use './acronis-ocean';
-@use './cyber-chat';
+@use 'acronis-default';
+@use 'acronis-ocean';
+@use 'acronis-electric';

@@ -26,13 +26,16 @@ export function applyTokenSet(tokenSet: TokenSet, theme: ThemeMode): void {
  */
 function applyThemeClass(root: HTMLElement, tokenSetId: string): void {
   // Remove any existing theme-* classes
-  const existingThemeClasses = Array.from(root.classList).filter(cls => cls.startsWith('theme-'))
-  existingThemeClasses.forEach(className => root.classList.remove(className))
+  const existingThemeClasses = Array.from(root.classList).filter((cls) =>
+    cls.startsWith('theme-')
+  );
+  existingThemeClasses.forEach((className) => root.classList.remove(className));
 
   // Apply theme class based on token set ID
-  // Convert tokenSetId to theme class name (e.g., 'chat' -> 'theme-cyber-chat', 'ocean' -> 'theme-ocean')
-  const themeClassName = tokenSetId === 'chat' ? 'theme-cyber-chat' : `theme-${tokenSetId}`
-  root.classList.add(themeClassName)
+  // Convert tokenSetId to theme class name (e.g., 'electric' -> 'theme-acronis-electric', 'ocean' -> 'theme-ocean')
+  const themeClassName =
+    tokenSetId === 'chat' ? 'theme-acronis-electric' : `theme-${tokenSetId}`;
+  root.classList.add(themeClassName);
 }
 
 /**

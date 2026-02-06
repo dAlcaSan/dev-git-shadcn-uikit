@@ -144,12 +144,12 @@ export const DEFAULT_TOKEN_SET: TokenSet = {
 }
 
 /**
- * Cyber Chat token set
+ * Acronis Electric token set
  */
-export const CYBER_CHAT_TOKEN_SET: TokenSet = {
-  id: 'chat',
-  name: 'Cyber Chat',
-  description: 'Cyber Chat UI theme',
+export const ACRONIS_ELECTRIC_TOKEN_SET: TokenSet = {
+  id: 'electric',
+  name: 'Acronis Electric',
+  description: 'Acronis Electric UI theme',
   light: {
     background: createToken(0, 0, 100),
     foreground: createToken(0, 0, 4),
@@ -157,7 +157,7 @@ export const CYBER_CHAT_TOKEN_SET: TokenSet = {
     cardBorder: createToken(210, 55, 96),
     cardForeground: createToken(0, 0, 4),
     popover: createToken(0, 0, 100),
-    popoverForeground: createToken(0,0,4),
+    popoverForeground: createToken(0, 0, 4),
     primary: createToken(209, 100, 50),
     primaryForeground: createToken(0, 0, 100),
     secondary: createToken(0, 0, 100),
@@ -575,7 +575,7 @@ export const ACRONIS_TOKEN_SET: TokenSet = {
 export const PREDEFINED_TOKEN_SETS: Record<string, TokenSet> = {
   acronis: ACRONIS_TOKEN_SET,
   default: DEFAULT_TOKEN_SET,
-  chat: CYBER_CHAT_TOKEN_SET,
+  chat: ACRONIS_ELECTRIC_TOKEN_SET,
   ocean: OCEAN_TOKEN_SET,
   forest: FOREST_TOKEN_SET,
   sunset: SUNSET_TOKEN_SET,

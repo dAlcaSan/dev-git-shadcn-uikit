@@ -19,7 +19,11 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       include: ['src/**/*'],
-      exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/**/*.spec.tsx'],
+      exclude: [
+        'src/**/*.stories.tsx',
+        'src/**/*.test.tsx',
+        'src/**/*.spec.tsx',
+      ],
     }),
   ],
   build: {
@@ -31,11 +35,26 @@ export default defineConfig({
         styles: resolve(__dirname, 'src/styles/index.scss'),
         'styles-tokens': resolve(__dirname, 'src/styles/tokens-only.scss'),
         'styles-base': resolve(__dirname, 'src/styles/base-only.scss'),
-        'styles-components': resolve(__dirname, 'src/styles/components-only.scss'),
-        'styles-utilities': resolve(__dirname, 'src/styles/utilities-only.scss'),
-        'themes/acronis-default': resolve(__dirname, 'src/styles/theme-acronis-default.scss'),
-        'themes/acronis-ocean': resolve(__dirname, 'src/styles/theme-acronis-ocean.scss'),
-        'themes/cyber-chat': resolve(__dirname, 'src/styles/theme-cyber-chat.scss'),
+        'styles-components': resolve(
+          __dirname,
+          'src/styles/components-only.scss'
+        ),
+        'styles-utilities': resolve(
+          __dirname,
+          'src/styles/utilities-only.scss'
+        ),
+        'themes/acronis-default': resolve(
+          __dirname,
+          'src/styles/theme-acronis-default.scss'
+        ),
+        'themes/acronis-ocean': resolve(
+          __dirname,
+          'src/styles/theme-acronis-ocean.scss'
+        ),
+        'themes/acronis-electric': resolve(
+          __dirname,
+          'src/styles/theme-acronis-electric.scss'
+        ),
       },
       formats: ['es'],
       fileName: (format, entryName) => `${entryName}.js`,
@@ -78,15 +97,19 @@ export default defineConfig({
 
           // Modular builds
           if (assetInfo.name === 'styles-base.css') return 'base.css';
-          if (assetInfo.name === 'styles-components.css') return 'components.css';
+          if (assetInfo.name === 'styles-components.css')
+            return 'components.css';
           if (assetInfo.name === 'styles-utilities.css') return 'utilities.css';
 
           // Main styles output
-          if (assetInfo.name === 'style.css' || assetInfo.name === 'styles.css') {
-            return 'shadcn-uikit.css'
+          if (
+            assetInfo.name === 'style.css' ||
+            assetInfo.name === 'styles.css'
+          ) {
+            return 'shadcn-uikit.css';
           }
           // Theme CSS files are already named correctly by cssCodeSplit
-          return assetInfo.name || 'assets/[name]-[hash][extname]'
+          return assetInfo.name || 'assets/[name]-[hash][extname]';
         },
       },
     },
@@ -103,4 +126,4 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./vitest.setup.ts'],
   },
-})
+});
