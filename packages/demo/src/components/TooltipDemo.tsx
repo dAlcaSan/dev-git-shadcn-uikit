@@ -1,180 +1,80 @@
-import { Button } from '@acronis-platform/shadcn-uikit/react'
+import * as React from 'react'
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-  TooltipArrow,
-} from '@acronis-platform/shadcn-uikit/react'
-import { Info } from 'lucide-react'
+  TooltipBasic,
+  TooltipWithIcon,
+  TooltipPositions,
+  TooltipLongText,
+  TooltipCustomDelay,
+  TooltipMultiple,
+} from '@/demos/tooltip'
+import { DemoWithCode } from './DemoWithCode'
+
+// Import actual source code files as raw strings
+import tooltipBasicCode from '../demos/tooltip/TooltipBasic.tsx?raw'
+import tooltipWithIconCode from '../demos/tooltip/TooltipWithIcon.tsx?raw'
+import tooltipPositionsCode from '../demos/tooltip/TooltipPositions.tsx?raw'
+import tooltipLongTextCode from '../demos/tooltip/TooltipLongText.tsx?raw'
+import tooltipCustomDelayCode from '../demos/tooltip/TooltipCustomDelay.tsx?raw'
+import tooltipMultipleCode from '../demos/tooltip/TooltipMultiple.tsx?raw'
 
 export function TooltipDemo() {
   return (
     <section className="demo-section">
       <h2>Tooltip Component</h2>
-      <p className="demo-description">
+      <p className="demo-description mb-8 text-muted-foreground">
         Used as an overlay object that provides context or explains the function of a UI element. It
         cannot contain a clickable element inside itself and is called on hovering.
       </p>
 
-      <div className="demo-grid">
-        <div className="demo-item">
-          <h3>Basic Tooltip</h3>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline">Hover me</Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Tooltip</p>
-                <TooltipArrow />
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+      <div className="space-y-8">
+        <DemoWithCode
+          title="Basic Tooltip"
+          description="Simple tooltip triggered on hover."
+          code={tooltipBasicCode}
+        >
+          <TooltipBasic />
+        </DemoWithCode>
 
-        <div className="demo-item">
-          <h3>Tooltip with Icon</h3>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button className="inline-flex items-center justify-center rounded-full w-6 h-6 bg-gray-200 hover:bg-gray-300 transition-colors">
-                  <Info className="w-4 h-4 text-gray-600" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Tooltip</p>
-                <TooltipArrow />
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+        <DemoWithCode
+          title="Tooltip with Icon"
+          description="Tooltip attached to an icon button."
+          code={tooltipWithIconCode}
+        >
+          <TooltipWithIcon />
+        </DemoWithCode>
 
-        <div className="demo-item">
-          <h3>Tooltip Positions</h3>
-          <div className="flex flex-col gap-8 items-center">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline">Top</Button>
-                </TooltipTrigger>
-                <TooltipContent side="top">
-                  <p>Tooltip on top</p>
-                  <TooltipArrow />
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+        <DemoWithCode
+          title="Tooltip Positions"
+          description="Tooltips positioned on different sides of the trigger."
+          code={tooltipPositionsCode}
+        >
+          <TooltipPositions />
+        </DemoWithCode>
 
-            <div className="flex gap-8">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="outline">Left</Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="left">
-                    <p>Tooltip on left</p>
-                    <TooltipArrow />
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+        <DemoWithCode
+          title="Tooltip with Longer Text"
+          description="Tooltip with more detailed information."
+          code={tooltipLongTextCode}
+        >
+          <TooltipLongText />
+        </DemoWithCode>
 
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="outline">Right</Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">
-                    <p>Tooltip on right</p>
-                    <TooltipArrow />
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+        <DemoWithCode
+          title="Tooltip with Custom Delay"
+          description="Tooltip with a longer delay before appearing."
+          code={tooltipCustomDelayCode}
+        >
+          <TooltipCustomDelay />
+        </DemoWithCode>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline">Bottom</Button>
-                </TooltipTrigger>
-                <TooltipContent side="bottom">
-                  <p>Tooltip on bottom</p>
-                  <TooltipArrow />
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-        </div>
-
-        <div className="demo-item">
-          <h3>Tooltip with Longer Text</h3>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline">Hover for details</Button>
-              </TooltipTrigger>
-              <TooltipContent className="max-w-xs">
-                <p>
-                  This is a longer tooltip text that provides more detailed information about the
-                  element.
-                </p>
-                <TooltipArrow />
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-
-        <div className="demo-item">
-          <h3>Tooltip with Custom Delay</h3>
-          <TooltipProvider delayDuration={800}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="outline">Slow to appear</Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>This tooltip has a longer delay</p>
-                <TooltipArrow />
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-
-        <div className="demo-item">
-          <h3>Multiple Tooltips</h3>
-          <TooltipProvider>
-            <div className="flex gap-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="default">Save</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Save your changes</p>
-                  <TooltipArrow />
-                </TooltipContent>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="secondary">Cancel</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Discard changes</p>
-                  <TooltipArrow />
-                </TooltipContent>
-              </Tooltip>
-
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="destructive">Delete</Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Delete permanently</p>
-                  <TooltipArrow />
-                </TooltipContent>
-              </Tooltip>
-            </div>
-          </TooltipProvider>
-        </div>
+        <DemoWithCode
+          title="Multiple Tooltips"
+          description="Multiple tooltips in a single provider."
+          code={tooltipMultipleCode}
+        >
+          <TooltipMultiple />
+        </DemoWithCode>
       </div>
     </section>
-  )
+  );
 }
