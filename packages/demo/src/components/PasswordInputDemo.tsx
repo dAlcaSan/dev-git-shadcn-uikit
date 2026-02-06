@@ -22,11 +22,12 @@ export function PasswordInputDemo() {
     <section className="demo-section">
       <h2>Password Input Component</h2>
       <p className="demo-description mb-8 text-muted-foreground">
-        Password input component with visibility toggle, error states, hint messages, and disabled states.
-        Based on Acronis Design System specifications from Figma.
+        Password input component with visibility toggle, error states, hint
+        messages, and disabled states. Based on Acronis Design System
+        specifications from Figma.
       </p>
 
-      <div className="demo-grid">
+      <div className="space-y-8">
         <DemoWithCode
           title="Password Input - Default State"
           description="Empty password input with placeholder and visibility toggle button."
@@ -76,5 +77,5 @@ export function PasswordInputDemo() {
         </DemoWithCode>
       </div>
     </section>
-  )
+  );
 }
